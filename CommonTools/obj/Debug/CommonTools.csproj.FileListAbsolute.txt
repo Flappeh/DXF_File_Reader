@@ -1,0 +1,11 @@
+D:\Kerja\Meister\CommonTools\bin\Debug\CommonTools.dll
+D:\Kerja\Meister\CommonTools\bin\Debug\CommonTools.pdb
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.csproj.AssemblyReference.cache
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.ColorPickerCtrl.resources
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.ColorPickerDialog.resources
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.ColorWheelCtrl.resources
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.PropertyDialog.resources
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.csproj.GenerateResource.cache
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.csproj.CoreCompileInputs.cache
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.dll
+D:\Kerja\Meister\CommonTools\obj\Debug\CommonTools.pdb

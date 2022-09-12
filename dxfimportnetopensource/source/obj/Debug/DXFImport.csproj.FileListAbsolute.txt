@@ -1,0 +1,8 @@
+D:\Kerja\Meister\dxfimportnetopensource\source\bin\Debug\DXFImport.exe
+D:\Kerja\Meister\dxfimportnetopensource\source\bin\Debug\DXFImport.pdb
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImport.csproj.AssemblyReference.cache
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImportForm.Form1.resources
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImport.csproj.GenerateResource.cache
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImport.csproj.CoreCompileInputs.cache
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImport.exe
+D:\Kerja\Meister\dxfimportnetopensource\source\obj\Debug\DXFImport.pdb
