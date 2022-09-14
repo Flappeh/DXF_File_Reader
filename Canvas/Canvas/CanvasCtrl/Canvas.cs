@@ -922,5 +922,10 @@ namespace Canvas
 			}
 			UpdateCursor();
 		}
+
+		private void CanvasCtrl_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

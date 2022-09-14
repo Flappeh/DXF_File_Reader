@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Ec6uvTIZqJupTs+uJdXk5/bUQNb/QvlefMAmiFtYyAw6sMtMMowFGCg88LOvXjCgspGUygOHGBTbo99AnhBGLQ==",
+  "dgSpecHash": "V4qJ7v4mtMRhBFJHHtJUfbec8JK8w4CCH6C921s3PwhRDMHvKBu9EDXU/Qic7VbELvK3kOK30zeLuo1IQjdYfw==",
   "success": true,
   "projectFilePath": "D:\\Kerja\\Meister\\Application\\DXF_Reader\\DXF_Reader.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\David\\.nuget\\packages\\ilgpu\\1.2.0\\ilgpu.1.2.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.reflection.metadata\\6.0.1\\system.reflection.metadata.6.0.1.nupkg.sha512",
+    "C:\\Users\\David\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

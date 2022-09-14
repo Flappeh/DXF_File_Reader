@@ -56,7 +56,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ColorPickerCtrl\ColorPickerCtrl.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ColorPickerCtrl\ColorPickerCtrl.Designer.cs">
       <DependentUpon>ColorPickerCtrl.cs</DependentUpon>
@@ -91,7 +91,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DropdownContainerControl.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Editors.cs">
       <SubType>Component</SubType>
