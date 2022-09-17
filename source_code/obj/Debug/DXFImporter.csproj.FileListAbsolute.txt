@@ -7,3 +7,14 @@ D:\Kerja\Meister\source_code\obj\Debug\DXFImporter.csproj.GenerateResource.cache
 D:\Kerja\Meister\source_code\obj\Debug\DXFImporter.csproj.CoreCompileInputs.cache
 D:\Kerja\Meister\source_code\obj\Debug\DXFImporter.exe
 D:\Kerja\Meister\source_code\obj\Debug\DXFImporter.pdb
+D:\Kerja\Meister_GIT\source_code\bin\Debug\DXFImporter.exe.config
+D:\Kerja\Meister_GIT\source_code\bin\Debug\DXFImporter.exe
+D:\Kerja\Meister_GIT\source_code\bin\Debug\DXFImporter.pdb
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.csproj.AssemblyReference.cache
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.csproj.SuggestedBindingRedirects.cache
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.Canvas.resources
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.MainGUI.resources
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.csproj.GenerateResource.cache
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.csproj.CoreCompileInputs.cache
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.exe
+D:\Kerja\Meister_GIT\source_code\obj\Debug\DXFImporter.pdb

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ILGPU.IR;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
@@ -16,11 +18,11 @@ namespace DXF_Reader
     {
         private int cX, cY;
         private bool det1 = false;
-
+        private float scaler = 1;
         public CADImage NCAD_IMG;
         private void Canvas_Load(object sender, EventArgs e)
         {
-            NCAD_IMG.FScale = NCAD_IMG.FScale / 1;
+            NCAD_IMG.FScale = NCAD_IMG.FScale / scaler;
             NCAD_IMG.Base.Y = this.Height/2;
             NCAD_IMG.Base.X = this.Width/4;
             Invalidate();
@@ -77,7 +79,23 @@ namespace DXF_Reader
             Canvas.ActiveForm.Cursor = Cursors.Default;
             Invalidate();
         }
+        private void detect_Scroll(object sender, MouseEventArgs e)
+        {
+            int x;
+            //this.Cursor = new Cursor(Cursor.Current.Handle);
+            
+            if (e.Delta > 0)
+            {
+                NCAD_IMG.FScale = NCAD_IMG.FScale * 1.2f;
+            }
+            else if(e.Delta < 0)
+            {
 
+                NCAD_IMG.FScale = NCAD_IMG.FScale / 1.2f;
+            }
+            this.Invalidate();
+
+        }
         #endregion
 
         private void pictureBox2_Click(object sender, EventArgs e)

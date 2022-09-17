@@ -79,5 +79,10 @@ namespace DXF_Reader
             childForm.BringToFront();
             childForm.Show();
         }
+
+        private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
