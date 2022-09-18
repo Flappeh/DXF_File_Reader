@@ -494,14 +494,19 @@ namespace Canvas
 		#endregion
 		string m_toolHint = string.Empty;
 		string m_snapHint = string.Empty;
-		/*
-		void SetHint()
+
+		private void DocumentForm_Load(object sender, EventArgs e)
 		{
-			if (m_toolHint.Length > 0)
-				m_snapInfoLabel.Text = m_toolHint;
-			else
-				m_snapInfoLabel.Text = m_snapHint;
+
 		}
-		*/
+		/*
+void SetHint()
+{
+	if (m_toolHint.Length > 0)
+		m_snapInfoLabel.Text = m_toolHint;
+	else
+		m_snapInfoLabel.Text = m_snapHint;
+}
+*/
 	}
 }
