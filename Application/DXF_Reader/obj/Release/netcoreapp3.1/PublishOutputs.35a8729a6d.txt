@@ -1,0 +1,9 @@
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\DXF_Reader.exe
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\DXF_Reader.dll
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\DXF_Reader.deps.json
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\DXF_Reader.runtimeconfig.json
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\DXF_Reader.pdb
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\ILGPU.dll
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\System.Collections.Immutable.dll
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\System.Reflection.Metadata.dll
+D:\Kerja\Meister\Application\DXF_Reader\bin\Release\netcoreapp3.1\publish\System.Runtime.CompilerServices.Unsafe.dll

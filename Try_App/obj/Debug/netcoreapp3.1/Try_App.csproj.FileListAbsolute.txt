@@ -1,0 +1,9 @@
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.csproj.AssemblyReference.cache
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.Canvas.resources
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.MainGUI.resources
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.Properties.Resources.resources
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.csproj.GenerateResource.cache
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.GeneratedMSBuildEditorConfig.editorconfig
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.AssemblyInfoInputs.cache
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.AssemblyInfo.cs
+D:\Belajar\Visual_Studio\C#\Try_App\obj\Debug\netcoreapp3.1\Try_App.csproj.CoreCompileInputs.cache
