@@ -31,5 +31,10 @@ namespace Try_App
             dlg.Filter = "DXF files (*.dxf)|*.dxf";
             if (dlg.ShowDialog(this) == DialogResult.OK) ;
         }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
