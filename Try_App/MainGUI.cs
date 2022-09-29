@@ -12,6 +12,7 @@ namespace Try_App
 {
     public partial class MainGUI : Form
     {
+        private Via_TH newTH;
         public string inputFileTxt;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         //private Canvas newCanvas;
@@ -35,6 +36,33 @@ namespace Try_App
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
 
+        }
+        private Form activeForm = null;
+        private void openChildForm(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(childForm);
+            panelChildForm.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+        private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Menu_TH_Click(object sender, EventArgs e)
+        {
+            newTH = new Via_TH();
+            newTH.MdiParent = this;
+            openChildForm(newTH);
+            newTH.Activate();
+            newTH.Focus();
         }
     }
 }

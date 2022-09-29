@@ -14,5 +14,10 @@ namespace Try_App
         {
             InitializeComponent();
         }
+
+        private void Canvas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

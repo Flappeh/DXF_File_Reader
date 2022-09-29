@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kerja\\Meister_GIT\\Try_App\\Try_App.csproj": {}
+    "D:\\Kerja\\Meister\\Try_App\\Try_App.csproj": {}
   },
   "projects": {
-    "D:\\Kerja\\Meister_GIT\\Try_App\\Try_App.csproj": {
+    "D:\\Kerja\\Meister\\Try_App\\Try_App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kerja\\Meister_GIT\\Try_App\\Try_App.csproj",
+        "projectUniqueName": "D:\\Kerja\\Meister\\Try_App\\Try_App.csproj",
         "projectName": "Try_App",
-        "projectPath": "D:\\Kerja\\Meister_GIT\\Try_App\\Try_App.csproj",
-        "packagesPath": "C:\\Users\\Bonar\\.nuget\\packages\\",
-        "outputPath": "D:\\Kerja\\Meister_GIT\\Try_App\\obj\\",
+        "projectPath": "D:\\Kerja\\Meister\\Try_App\\Try_App.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\Kerja\\Meister\\Try_App\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Bonar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
