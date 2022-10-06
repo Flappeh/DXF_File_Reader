@@ -207,7 +207,7 @@ namespace Try_App
 		public DXFSection FMain;
 		public string FValue;
 		public NumberFormatInfo N = new NumberFormatInfo();
-		public float FScale = 1;
+		public float FScale = 1; 
 		public DXFTable layers;
 		public string[] layernames;
 		public DXFLayer LayerByName(string AName)
@@ -219,13 +219,21 @@ namespace Try_App
 			{
 				if (AName.ToLower() == ((DXFLayer)layers.Entities[I]).name.ToLower())
 					Result = ((DXFLayer)layers.Entities[I]);
-					layernames.Append(AName);
             }
 			if (Result == null)
 			{
 				Result = new DXFLayer();
 				Result.name = AName;
 				layers.AddEntity(Result);
+			}
+			try
+			{
+				layernames.Append(AName);
+
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
 			}
 			return Result;
 		}

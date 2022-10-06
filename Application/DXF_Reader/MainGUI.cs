@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
-
+using System.Collections.Generic;
 
 namespace DXF_Reader
 {
@@ -15,6 +15,16 @@ namespace DXF_Reader
         public string inputFileTxt;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private Canvas newCanvas;
+        public List<string> layerNames;
+        public delegate void LayerUpdateEventHandler(object source, EventArgs e);
+        public event LayerUpdateEventHandler LayerUpdate;
+        protected virtual void OnLayerUpdate()
+        {
+            if(LayerUpdate != null)
+            {
+                LayerUpdate(this, EventArgs.Empty);
+            }
+        }
         public MainGUI()
         {
             InitializeComponent();
@@ -81,6 +91,14 @@ namespace DXF_Reader
         }
 
         private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void writeNames(string i)
+        {
+            boxLayers.Items.Add(i);
+        }
+        private void boxLayers_Click(object sender, EventArgs e)
         {
 
         }

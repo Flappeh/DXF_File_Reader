@@ -11,6 +11,7 @@ namespace DXF_Reader
 {
 	public class Converter
 	{
+		
 
 	}
 	public class DXFConst
@@ -195,7 +196,6 @@ namespace DXF_Reader
 		public NumberFormatInfo N = new NumberFormatInfo();
 		public float FScale = 1;
 		public DXFTable layers;
-
 		public DXFLayer LayerByName(string AName)
 		{
 			DXFLayer Result = null;
@@ -204,14 +204,18 @@ namespace DXF_Reader
 			for (I = 0; I < layers.Entities.Count; I++)
 			{
 				if (AName.ToLower() == ((DXFLayer)layers.Entities[I]).name.ToLower())
+				{
 					Result = ((DXFLayer)layers.Entities[I]);
+				}
+
 			}
 			if (Result == null)
 			{
 				Result = new DXFLayer();
 				Result.name = AName;
-				layers.AddEntity(Result);
+                layers.AddEntity(Result);
 			}
+
 			return Result;
 		}
 		public void Draw(Graphics e)
@@ -319,7 +323,7 @@ namespace DXF_Reader
 					E = new DXFCircle();
 					break;
 				case "LAYER":
-					E = new DXFLayer();
+                    E = new DXFLayer();
 					break;
 				case "TEXT":
 					E = new DXFText();
@@ -1405,7 +1409,6 @@ namespace DXF_Reader
 		public byte flags;
 		public bool visible;
 		public string name = "";
-
 		public override void ReadProperty()
 		{
 			switch (Converter.FCode)

@@ -28,7 +28,7 @@ namespace Try_App
 
         private void MenuStrip_Open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
+            OpenFileDialog dlg =new OpenFileDialog();
             dlg.Filter = "DXF files (*.dxf)|*.dxf";
             if (dlg.ShowDialog(this) == DialogResult.OK) ;
         }
