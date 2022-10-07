@@ -38,12 +38,13 @@ namespace DXF_Reader
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
         }
-
         private void Canvas_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             if (NCAD_IMG == null)
                 return;
             NCAD_IMG.Draw(e.Graphics);
+            var dLayer = new DXFLayer(); 
+            label1.Text = NCAD_IMG.NamaNama.ToString();
         }
 
         #region Mouse Movement

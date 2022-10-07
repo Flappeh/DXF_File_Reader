@@ -5,13 +5,16 @@ using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Security.Permissions;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace DXF_Reader
 {
 	public class Converter
 	{
-		
+
 
 	}
 	public class DXFConst
@@ -196,6 +199,15 @@ namespace DXF_Reader
 		public NumberFormatInfo N = new NumberFormatInfo();
 		public float FScale = 1;
 		public DXFTable layers;
+		private string i;
+
+		public List<string> NamaNama
+		{
+			get { return NamaNama; }
+			set { NamaNama.Add(i); }
+		}
+		
+		
 		public DXFLayer LayerByName(string AName)
 		{
 			DXFLayer Result = null;
@@ -213,11 +225,18 @@ namespace DXF_Reader
 			{
 				Result = new DXFLayer();
 				Result.name = AName;
+                Result.LayerNameAddEvent += Result_LayerNameAddEvent;
                 layers.AddEntity(Result);
 			}
 
 			return Result;
 		}
+
+		private void Result_LayerNameAddEvent(object sender, string e)
+		{
+			NamaNama.Add(e);
+		}
+
 		public void Draw(Graphics e)
 		{
 			if (FMain == null)
@@ -323,7 +342,7 @@ namespace DXF_Reader
 					E = new DXFCircle();
 					break;
 				case "LAYER":
-                    E = new DXFLayer();
+					E = new DXFLayer();
 					break;
 				case "TEXT":
 					E = new DXFText();
@@ -1409,6 +1428,7 @@ namespace DXF_Reader
 		public byte flags;
 		public bool visible;
 		public string name = "";
+		public event EventHandler<string> LayerNameAddEvent;
 		public override void ReadProperty()
 		{
 			switch (Converter.FCode)
@@ -1418,12 +1438,14 @@ namespace DXF_Reader
 					break;
 				case 2:
 					name = "" + Converter.FValue;
+					LayerNameAddEvent?.Invoke(this, name);
 					break;
 				case 62:
 					color = CADImage.IntToColor(Convert.ToInt32(Converter.FValue, Converter.N));
 					break;
 			}
 		}
+		
 		public override void Loaded()
 		{
 			/*if(color) {    // invisible

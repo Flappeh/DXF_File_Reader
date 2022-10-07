@@ -16,15 +16,6 @@ namespace DXF_Reader
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private Canvas newCanvas;
         public List<string> layerNames;
-        public delegate void LayerUpdateEventHandler(object source, EventArgs e);
-        public event LayerUpdateEventHandler LayerUpdate;
-        protected virtual void OnLayerUpdate()
-        {
-            if(LayerUpdate != null)
-            {
-                LayerUpdate(this, EventArgs.Empty);
-            }
-        }
         public MainGUI()
         {
             InitializeComponent();
@@ -70,9 +61,12 @@ namespace DXF_Reader
                 openChildForm(newCanvas);                        //the canvas is displayed...
                 newCanvas.Activate();
                 newCanvas.Focus();
-
+                layerNames = newCanvas.NCAD_IMG.NamaNama;
             }
-
+            foreach(string i in layerNames)
+            {
+                boxLayers.Items.Add(i);
+            }
             openFileDialog1.Dispose();
         }
         private Form activeForm = null;
@@ -94,10 +88,7 @@ namespace DXF_Reader
         {
 
         }
-        public void writeNames(string i)
-        {
-            boxLayers.Items.Add(i);
-        }
+        
         private void boxLayers_Click(object sender, EventArgs e)
         {
 
