@@ -45,3 +45,4 @@ D:\Kerja\Meister_GIT\Application\DXF_Reader\bin\Debug\netcoreapp3.1\System.Runti
 D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.csproj.CopyComplete
 D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.genruntimeconfig.cache
 D:\Kerja\Meister\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.Via_TH.resources
+D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.Via_TH.resources

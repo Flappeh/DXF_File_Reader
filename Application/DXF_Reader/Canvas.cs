@@ -20,6 +20,7 @@ namespace DXF_Reader
         private bool det1 = false;
         private float scaler = 1;
         public CADImage NCAD_IMG;
+        public List<string> LayerNames = new List<string>();
         private void Canvas_Load(object sender, EventArgs e)
         {
             NCAD_IMG.FScale = NCAD_IMG.FScale / scaler;
@@ -27,9 +28,9 @@ namespace DXF_Reader
             NCAD_IMG.Base.X = this.Width/4;
             Invalidate();
         }
+        public Canvas main;
         public Canvas()
         {
-
             InitializeComponent();
 
             //.Net Style Double Buffering/////////////////
@@ -42,10 +43,12 @@ namespace DXF_Reader
         {
             if (NCAD_IMG == null)
                 return;
+            DXFLayer dxflayer = new DXFLayer();
             NCAD_IMG.Draw(e.Graphics);
-            var dLayer = new DXFLayer(); 
-            label1.Text = NCAD_IMG.NamaNama.ToString();
+            NCAD_IMG.LayerNames = LayerNames;
         }
+
+
 
         #region Mouse Movement
         private void Canvas_MouseDown(object sender, MouseEventArgs e)

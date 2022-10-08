@@ -15,7 +15,6 @@ namespace DXF_Reader
 	public class Converter
 	{
 
-
 	}
 	public class DXFConst
 	{
@@ -199,15 +198,23 @@ namespace DXF_Reader
 		public NumberFormatInfo N = new NumberFormatInfo();
 		public float FScale = 1;
 		public DXFTable layers;
-		private string i;
-
-		public List<string> NamaNama
+		public CADImage(DXFEntity e)
 		{
-			get { return NamaNama; }
-			set { NamaNama.Add(i); }
+			e.EntityAddedEventHandler += E_EntityAddedEventHandler;
 		}
-		
-		
+
+		private void E_EntityAddedEventHandler(object sender, string e)
+		{
+			names = e;
+		}
+
+		private string i = "";
+		public List<string> LayerNames =new List<string>();		
+		public string names
+		{
+			get { return i; }
+			set { LayerNames.Add(value); }
+		}
 		public DXFLayer LayerByName(string AName)
 		{
 			DXFLayer Result = null;
@@ -225,17 +232,15 @@ namespace DXF_Reader
 			{
 				Result = new DXFLayer();
 				Result.name = AName;
-                Result.LayerNameAddEvent += Result_LayerNameAddEvent;
+				if (names != AName)
+				{
+					names = AName;
+				}
                 layers.AddEntity(Result);
 			}
-
 			return Result;
 		}
 
-		private void Result_LayerNameAddEvent(object sender, string e)
-		{
-			NamaNama.Add(e);
-		}
 
 		public void Draw(Graphics e)
 		{
@@ -248,6 +253,7 @@ namespace DXF_Reader
 		{
 			Ent.Draw(FGraphics);
 		}
+
 		public DXFBlock FindBlock(string Name)
 		{
 			DXFBlock vB = null;
@@ -266,6 +272,8 @@ namespace DXF_Reader
 			FParams = Params;
 			FEntities.Iterate(Proc, Params);
 		}
+
+
 		public float FloatValue()
 		{
 			float F;
@@ -342,7 +350,8 @@ namespace DXF_Reader
 					E = new DXFCircle();
 					break;
 				case "LAYER":
-					E = new DXFLayer();
+
+                    E = new DXFLayer();
 					break;
 				case "TEXT":
 					E = new DXFText();
@@ -363,6 +372,7 @@ namespace DXF_Reader
 			E.Converter = this;
 			return E;
 		}
+
 		public void Next()
 		{
 			FCode = Convert.ToInt32(FStream.ReadLine());
@@ -423,6 +433,7 @@ namespace DXF_Reader
 		{
 			return false;
 		}
+		public event EventHandler<string> EntityAddedEventHandler;
 		public DXFLayer layer;
 		public CADImage Converter;
 		public Color FColor = DXFConst.clByLayer;
@@ -459,6 +470,7 @@ namespace DXF_Reader
 		}
 		public void ReadProps()
 		{
+			DXFLayer e;
 			while (true)
 			{
 				Converter.Next();
@@ -466,15 +478,23 @@ namespace DXF_Reader
 				{
 					case 0:
 						return;
-					//	case 66: 
-					//		Complex = Converter.FValue != "0";
-					//	break;
+					case 2:
+						e.EntityAddedEventHandler += E_EntityAddedEventHandler;
+						break;
+                    //	case 66: 
+                    //		Complex = Converter.FValue != "0";
+                    //	break;
 
-					default:
+                    default:
 						ReadProperty();
 						break;
 				}
 			}
+		}
+
+		private void E_EntityAddedEventHandler(object sender, string e)
+		{
+			layer.LayerNameEventHandler += 
 		}
 
 		public virtual void ReadProperty() { }
@@ -1428,7 +1448,8 @@ namespace DXF_Reader
 		public byte flags;
 		public bool visible;
 		public string name = "";
-		public event EventHandler<string> LayerNameAddEvent;
+		public event EventHandler<string> LayerNameEventHandler;
+
 		public override void ReadProperty()
 		{
 			switch (Converter.FCode)
@@ -1438,7 +1459,7 @@ namespace DXF_Reader
 					break;
 				case 2:
 					name = "" + Converter.FValue;
-					LayerNameAddEvent?.Invoke(this, name);
+					LayerNameEventHandler?.Invoke(this, name);
 					break;
 				case 62:
 					color = CADImage.IntToColor(Convert.ToInt32(Converter.FValue, Converter.N));

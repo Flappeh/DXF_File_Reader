@@ -12,14 +12,14 @@ namespace DXF_Reader
 {
     public partial class Via_TH : Form
     {
-        string inputFileName;
+
+        public string inputFileName;
         string outputFileName;
         private System.Windows.Forms.OpenFileDialog openFileName;
-        private string[] layers;
-        protected CADImage getCAD;
-        private DXFLayer DXFlayers = new DXFLayer();
-        public Via_TH()
+        public CADImage getCAD;
+        public Via_TH(CADImage i)
         {
+            getCAD = i;
             InitializeComponent();
         }
 
@@ -30,7 +30,8 @@ namespace DXF_Reader
 
         private void Via_TH_Load(object sender, EventArgs e)
         {
-
+            if(inputFileName != null)
+            label_Open_File.Text = inputFileName;
         }
 
         private List<string> layernames = new List<string>();
@@ -50,7 +51,7 @@ namespace DXF_Reader
                     getCAD.LoadFromFile(inputFileName);
 
                 }
-                foreach (string l in layers)
+                foreach (string l in layernames)
                 {
                     list_layers.Items.Add(l);
                 }

@@ -61,11 +61,9 @@
             this.groupBox1.Controls.Add(this.text_Gap_TopBot);
             this.groupBox1.Controls.Add(this.text_Hole_Size);
             this.groupBox1.Controls.Add(this.text_Gap_Hole);
-            this.groupBox1.Location = new System.Drawing.Point(12, 160);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(14, 213);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(333, 150);
+            this.groupBox1.Size = new System.Drawing.Size(381, 200);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output Details :";
@@ -74,9 +72,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(14, 104);
+            this.label4.Location = new System.Drawing.Point(16, 139);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(144, 21);
+            this.label4.Size = new System.Drawing.Size(181, 28);
             this.label4.TabIndex = 7;
             this.label4.Text = "DXF Output Name :";
             // 
@@ -84,9 +82,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(15, 77);
+            this.label3.Location = new System.Drawing.Point(17, 103);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(144, 21);
+            this.label3.Size = new System.Drawing.Size(181, 28);
             this.label3.TabIndex = 6;
             this.label3.Text = "TOP.BOT Gap          :";
             // 
@@ -94,9 +92,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(15, 50);
+            this.label2.Location = new System.Drawing.Point(17, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 21);
+            this.label2.Size = new System.Drawing.Size(186, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "Gap Between Hole : ";
             // 
@@ -104,42 +102,38 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(14, 21);
+            this.label1.Location = new System.Drawing.Point(16, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 21);
+            this.label1.Size = new System.Drawing.Size(182, 28);
             this.label1.TabIndex = 1;
             this.label1.Text = "Hole Size                 :";
             // 
             // text_Output_Name
             // 
-            this.text_Output_Name.Location = new System.Drawing.Point(178, 104);
-            this.text_Output_Name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.text_Output_Name.Location = new System.Drawing.Point(203, 139);
             this.text_Output_Name.Name = "text_Output_Name";
-            this.text_Output_Name.Size = new System.Drawing.Size(134, 23);
+            this.text_Output_Name.Size = new System.Drawing.Size(153, 27);
             this.text_Output_Name.TabIndex = 4;
             // 
             // text_Gap_TopBot
             // 
-            this.text_Gap_TopBot.Location = new System.Drawing.Point(178, 77);
-            this.text_Gap_TopBot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.text_Gap_TopBot.Location = new System.Drawing.Point(203, 103);
             this.text_Gap_TopBot.Name = "text_Gap_TopBot";
-            this.text_Gap_TopBot.Size = new System.Drawing.Size(134, 23);
+            this.text_Gap_TopBot.Size = new System.Drawing.Size(153, 27);
             this.text_Gap_TopBot.TabIndex = 2;
             // 
             // text_Hole_Size
             // 
-            this.text_Hole_Size.Location = new System.Drawing.Point(178, 23);
-            this.text_Hole_Size.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.text_Hole_Size.Location = new System.Drawing.Point(203, 31);
             this.text_Hole_Size.Name = "text_Hole_Size";
-            this.text_Hole_Size.Size = new System.Drawing.Size(134, 23);
+            this.text_Hole_Size.Size = new System.Drawing.Size(153, 27);
             this.text_Hole_Size.TabIndex = 3;
             // 
             // text_Gap_Hole
             // 
-            this.text_Gap_Hole.Location = new System.Drawing.Point(178, 50);
-            this.text_Gap_Hole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.text_Gap_Hole.Location = new System.Drawing.Point(203, 67);
             this.text_Gap_Hole.Name = "text_Gap_Hole";
-            this.text_Gap_Hole.Size = new System.Drawing.Size(134, 23);
+            this.text_Gap_Hole.Size = new System.Drawing.Size(153, 27);
             this.text_Gap_Hole.TabIndex = 1;
             // 
             // button_Clear
@@ -148,10 +142,9 @@
             this.button_Clear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Clear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Clear.Location = new System.Drawing.Point(441, 122);
-            this.button_Clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_Clear.Location = new System.Drawing.Point(504, 163);
             this.button_Clear.Name = "button_Clear";
-            this.button_Clear.Size = new System.Drawing.Size(144, 35);
+            this.button_Clear.Size = new System.Drawing.Size(165, 47);
             this.button_Clear.TabIndex = 1;
             this.button_Clear.Text = "Clear Input";
             this.button_Clear.UseVisualStyleBackColor = false;
@@ -162,10 +155,9 @@
             this.button_Generate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Generate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Generate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Generate.Location = new System.Drawing.Point(441, 182);
-            this.button_Generate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_Generate.Location = new System.Drawing.Point(504, 243);
             this.button_Generate.Name = "button_Generate";
-            this.button_Generate.Size = new System.Drawing.Size(144, 36);
+            this.button_Generate.Size = new System.Drawing.Size(165, 48);
             this.button_Generate.TabIndex = 2;
             this.button_Generate.Text = "Generate Output";
             this.button_Generate.UseVisualStyleBackColor = false;
@@ -176,11 +168,9 @@
             this.Group_Input.Controls.Add(this.list_layers);
             this.Group_Input.Controls.Add(this.label6);
             this.Group_Input.Controls.Add(this.label8);
-            this.Group_Input.Location = new System.Drawing.Point(12, 35);
-            this.Group_Input.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Group_Input.Location = new System.Drawing.Point(14, 47);
             this.Group_Input.Name = "Group_Input";
-            this.Group_Input.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Group_Input.Size = new System.Drawing.Size(333, 103);
+            this.Group_Input.Size = new System.Drawing.Size(381, 137);
             this.Group_Input.TabIndex = 8;
             this.Group_Input.TabStop = false;
             this.Group_Input.Text = "Input Details :";
@@ -188,9 +178,10 @@
             // 
             // button_inputFile
             // 
-            this.button_inputFile.Location = new System.Drawing.Point(178, 33);
+            this.button_inputFile.Location = new System.Drawing.Point(203, 44);
+            this.button_inputFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_inputFile.Name = "button_inputFile";
-            this.button_inputFile.Size = new System.Drawing.Size(134, 23);
+            this.button_inputFile.Size = new System.Drawing.Size(153, 31);
             this.button_inputFile.TabIndex = 9;
             this.button_inputFile.Text = "Select File";
             this.button_inputFile.UseVisualStyleBackColor = true;
@@ -199,18 +190,19 @@
             // list_layers
             // 
             this.list_layers.FormattingEnabled = true;
-            this.list_layers.Location = new System.Drawing.Point(178, 62);
+            this.list_layers.Location = new System.Drawing.Point(203, 83);
+            this.list_layers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.list_layers.Name = "list_layers";
-            this.list_layers.Size = new System.Drawing.Size(134, 23);
+            this.list_layers.Size = new System.Drawing.Size(153, 28);
             this.list_layers.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(16, 32);
+            this.label6.Location = new System.Drawing.Point(18, 43);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(141, 21);
+            this.label6.Size = new System.Drawing.Size(176, 28);
             this.label6.TabIndex = 6;
             this.label6.Text = "Source File             :";
             // 
@@ -218,9 +210,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(14, 62);
+            this.label8.Location = new System.Drawing.Point(16, 83);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(143, 21);
+            this.label8.Size = new System.Drawing.Size(177, 28);
             this.label8.TabIndex = 1;
             this.label8.Text = "Outer Layer            :";
             // 
@@ -228,9 +220,9 @@
             // 
             this.label_Open_File.AutoSize = true;
             this.label_Open_File.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_Open_File.Location = new System.Drawing.Point(512, 93);
+            this.label_Open_File.Location = new System.Drawing.Point(598, 123);
             this.label_Open_File.Name = "label_Open_File";
-            this.label_Open_File.Size = new System.Drawing.Size(96, 25);
+            this.label_Open_File.Size = new System.Drawing.Size(122, 32);
             this.label_Open_File.TabIndex = 9;
             this.label_Open_File.Text = "File Name";
             // 
@@ -238,18 +230,18 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(401, 92);
+            this.label5.Location = new System.Drawing.Point(458, 123);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 25);
+            this.label5.Size = new System.Drawing.Size(143, 32);
             this.label5.TabIndex = 10;
             this.label5.Text = "Source File :";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Via_TH
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 338);
+            this.ClientSize = new System.Drawing.Size(800, 451);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label_Open_File);
             this.Controls.Add(this.Group_Input);
@@ -257,7 +249,6 @@
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Via_TH";
             this.Text = "Via_TH";
             this.Load += new System.EventHandler(this.Via_TH_Load);

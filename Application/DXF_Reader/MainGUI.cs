@@ -15,6 +15,7 @@ namespace DXF_Reader
         public string inputFileTxt;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private Canvas newCanvas;
+        private Via_TH newTH;
         public List<string> layerNames;
         public MainGUI()
         {
@@ -61,12 +62,8 @@ namespace DXF_Reader
                 openChildForm(newCanvas);                        //the canvas is displayed...
                 newCanvas.Activate();
                 newCanvas.Focus();
-                layerNames = newCanvas.NCAD_IMG.NamaNama;
             }
-            foreach(string i in layerNames)
-            {
-                boxLayers.Items.Add(i);
-            }
+            
             openFileDialog1.Dispose();
         }
         private Form activeForm = null;
@@ -92,6 +89,16 @@ namespace DXF_Reader
         private void boxLayers_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_TH_Click(object sender, EventArgs e)
+        {
+            newTH = new Via_TH(FCADImage);
+            newTH.MdiParent = this;
+            newTH.inputFileName = inputFileTxt;
+            openChildForm(newTH);                        //the canvas is displayed...
+            newTH.Activate();
+            newTH.Focus();
         }
     }
 }
