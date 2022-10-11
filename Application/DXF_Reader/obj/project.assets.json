@@ -84,6 +84,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "netDxf/3.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/netDxf.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/netDxf.dll": {}
+        }
       }
     }
   },
@@ -203,11 +213,17 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "netDxf/3.0.0": {
+      "type": "project",
+      "path": "../../netDxf-master/netDxf/netDxf.csproj",
+      "msbuildProject": "../../netDxf-master/netDxf/netDxf.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "ILGPU >= 1.2.0"
+      "ILGPU >= 1.2.0",
+      "netDxf >= 3.0.0"
     ]
   },
   "packageFolders": {
@@ -241,7 +257,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj": {
+              "projectPath": "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

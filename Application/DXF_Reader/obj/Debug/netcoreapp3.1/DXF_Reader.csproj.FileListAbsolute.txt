@@ -46,3 +46,6 @@ D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.c
 D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.genruntimeconfig.cache
 D:\Kerja\Meister\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.Via_TH.resources
 D:\Kerja\Meister_GIT\Application\DXF_Reader\obj\Debug\netcoreapp3.1\DXF_Reader.Via_TH.resources
+D:\Kerja\Meister\Application\DXF_Reader\bin\Debug\netcoreapp3.1\netDxf.dll
+D:\Kerja\Meister\Application\DXF_Reader\bin\Debug\netcoreapp3.1\netDxf.pdb
+D:\Kerja\Meister\Application\DXF_Reader\bin\Debug\netcoreapp3.1\netDxf.xml

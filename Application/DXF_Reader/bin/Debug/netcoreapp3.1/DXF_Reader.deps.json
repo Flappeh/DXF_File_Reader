@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.1": {
       "DXF_Reader/1.0.0": {
         "dependencies": {
-          "ILGPU": "1.2.0"
+          "ILGPU": "1.2.0",
+          "netDxf": "3.0.0"
         },
         "runtime": {
           "DXF_Reader.dll": {}
@@ -59,6 +60,11 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "netDxf/3.0.0": {
+        "runtime": {
+          "netDxf.dll": {}
+        }
       }
     }
   },
@@ -102,6 +108,11 @@
       "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "netDxf/3.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

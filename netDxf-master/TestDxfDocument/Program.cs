@@ -21,17 +21,47 @@ using Point = netDxf.Entities.Point;
 using Trace = netDxf.Entities.Trace;
 using Vector2 = netDxf.Vector2;
 using Vector3 = netDxf.Vector3;
+using System.Windows.Forms;
 
 namespace TestDxfDocument
 {
     /// <summary>
     /// This is just a simple test of work in progress for the netDxf library.
     /// </summary>
+    public class ControlWriter : TextWriter
+    {
+        private Control textbox;
+        public ControlWriter(Control textbox)
+        {
+            this.textbox = textbox;
+        }
+
+        public override void Write(char value)
+        {
+            textbox.Text += value;
+        }
+
+        public override void Write(string value)
+        {
+            textbox.Text += value;
+        }
+
+        public override Encoding Encoding
+        {
+            get { return Encoding.ASCII; }
+        }
+    }
     public class Program
     {
+        [STAThread]
         public static void Main()
         {
-            DxfDocument doc = Test(@"sample.dxf"); 
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Log_Form());
+
+
 
             #region Samples for GTE classes
 
@@ -5696,7 +5726,7 @@ namespace TestDxfDocument
             Console.ReadLine();
         }
 
-        private static DxfDocument Test(string file, string output = null)
+        public static DxfDocument Test(string file, string output = null)
         {
             // optionally you can save the information to a text file
             bool outputLog = !string.IsNullOrEmpty(output);

@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Collections;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace DXF_Reader
 {
@@ -335,6 +336,18 @@ namespace DXF_Reader
             }
             E.Converter = this;
             return E;
+        }
+        public List<string> newDXF;
+        public bool headerFinished = false;
+        public void createFile(string FName)
+        {
+            using(StreamWriter sw = File.CreateText(FName))
+            {
+                foreach(string i in newDXF)
+                {
+                    sw.WriteLine(i);
+                }
+            }
         }
         public void Next()
         {
