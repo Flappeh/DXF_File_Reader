@@ -43,9 +43,7 @@ namespace DXF_Reader
         {
             if (NCAD_IMG == null)
                 return;
-            DXFLayer dxflayer = new DXFLayer();
             NCAD_IMG.Draw(e.Graphics);
-            NCAD_IMG.LayerNames = LayerNames;
         }
 
 
