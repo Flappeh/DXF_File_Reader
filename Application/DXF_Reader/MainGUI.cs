@@ -51,8 +51,6 @@ namespace DXF_Reader
                 if (inputFileTxt.Length > 0)
                 {
                     FCADImage = new CADImage();
-                    FCADImage.Base.X = Bottom - 100;
-                    FCADImage.Base.Y = 100;
                     FCADImage.LoadFromFile(inputFileTxt);
                     newCanvas.NCAD_IMG = FCADImage;
                 }
