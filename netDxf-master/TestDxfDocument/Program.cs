@@ -47,71 +47,8 @@ namespace TestDxfDocument
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Log_Form());
 
+            //DxfDocument dxf = DxfDocument.Load(@"Tester.dxf");
             //ShowDxfDocumentInformation(dxf);
-
-
-
-
-
-
-
-            //                // now this should return true since layer1 is empty
-            //                ok = dxf.Layers.Remove(layer1.Name);
-
-            //                // blocks needs an special attention
-            //                Layer layer3 = new Layer("Layer3");
-            //                layer3.Color = AciColor.Yellow;
-
-            //                Circle circle = new Circle(Vector3.Zero, 15);
-            //                // it is always recommended that all block entities will be located in layer 0, but this is up to the user.
-            //                circle.Layer = new Layer("circle");
-            //                circle.Layer.Color = AciColor.Green;
-
-            //                Block block = new Block("MyBlock");
-            //                block.Entities.Add(circle);
-            //                block.Layer = new Layer("blockLayer");
-            //                AttributeDefinition attdef = new AttributeDefinition("NewAttribute");
-            //                attdef.Layer = new Layer("attDefLayer");
-            //                attdef.Linetype = Linetype.Center;
-            //                block.AttributeDefinitions.Add(attdef);
-
-            //                Insert insert = new Insert(block, new Vector2(5, 5));
-            //                insert.Layer = layer3;
-            //                insert.Attributes[0].Layer = new Layer("attLayer");
-            //                insert.Attributes[0].Linetype = Linetype.Dashed;
-            //                dxf.Entities.Add(insert);
-
-            //                dxf.Save("test.dxf");
-
-            //                DxfDocument dxf2 = DxfDocument.Load("test.dxf");
-
-            //                // this list will contain the circle entity
-            //                List<DxfObject> dxfObjects;
-            //                dxfObjects = dxf.Layers.GetReferences("circle");
-
-            //                // but we cannot removed since it is part of a block
-            //                ok = dxf.Entities.Remove(circle);
-            //                // we need to remove first the block, but to do this we need to make sure there are no references of that block in the document
-            //                dxfObjects = dxf.Blocks.GetReferences(block.Name);
-            //                foreach (DxfObject o in dxfObjects)
-            //                {
-            //                    dxf.Entities.Remove(o as EntityObject);
-            //                }
-
-
-            //                // now it is safe to remove the block since we do not have more references in the document
-            //                ok = dxf.Blocks.Remove(block.Name);
-            //                // now it is safe to remove the layer "circle", the circle entity was removed with the block since it was part of it
-            //                ok = dxf.Layers.Remove("circle");
-
-            //                // purge all document layers, only empty layers will be removed
-            //                dxf.Layers.Clear();
-
-            //                // purge all document line types, only line types without references will be removed
-            //                dxf.Linetypes.Clear();
-
-            //                dxf.Save("test2.dxf");
-            //            //}
 
             #region Samples for GTE classes
 
@@ -263,7 +200,7 @@ namespace TestDxfDocument
 
             #region Samples for fixes, new and modified features 0.9.2
 
-            //NurbsEvaluator();
+            NurbsEvaluator();
             //XDataInformation();
             //DynamicBlocks();
 

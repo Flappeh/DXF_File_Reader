@@ -30,28 +30,29 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Diagnostics;
+using System.IO;
 
 namespace TestDxfDocument
 {
     public partial class Log_Form : Form
     {
         List<string> layerNames = new List<string>();
-        DxfDocument dxf;
+        public DxfDocument dxf;
         public Log_Form()
         {
             InitializeComponent();
         }
         string fName,selectedItem = "";
         OpenFileDialog ofName = new OpenFileDialog();
-        
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Log_Form_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void button_inputFile_Click(object sender, EventArgs e)
@@ -79,11 +80,32 @@ namespace TestDxfDocument
 
         private void button_Generate_Click(object sender, EventArgs e)
         {
-            if(text_Output_Name.Text.Length >3)
-                ParseLayer(dxf, text_Output_Name.Text);
+            if (text_Output_Name.Text.Length < 3)
+                MessageBox.Show("Output Name must have more than 3 characters!");
+            else if (dxf == null)
+                MessageBox.Show("No present dxf file");
             else
             {
-                MessageBox.Show( "Output Name must have more than 3 characters!");
+                ParseLayer(dxf, text_Output_Name.Text);
+                DxfDocument genDXF = DxfDocument.Load(String.Format("{0}.dxf",text_Output_Name.Text), new List<string> { @".\Support" });
+                foreach (var o in genDXF.Layers)
+                {
+                    if(o.Name == selectedItem)
+                    {
+                        List<DxfObject> entities = genDXF.Layers.GetReferences(o.Name);
+                        
+                        foreach (Polyline2D poly in entities)
+                        {
+                            foreach(var i in poly.Vertexes)
+                            {
+                                box_debug.Text += ("x" + i.Position.X.ToString(), "y"+ i.Position.Y.ToString());
+                            }
+                            
+                        }
+
+                            //for (int i = 0; i < dxf.Entities.ActiveLayout.Length) ;
+                    }   
+                }
             }
         }
 
@@ -135,6 +157,11 @@ namespace TestDxfDocument
         {
             selectedItem= list_layers .SelectedItem.ToString();
             box_debug.Text += "Layer : "+ selectedItem+ " is saved!";
+        }
+
+        private void button_Clear_Click(object sender, EventArgs e)
+        {
+            dxf = new DxfDocument();
         }
 
         private void box_debug_TextChanged(object sender, EventArgs e)

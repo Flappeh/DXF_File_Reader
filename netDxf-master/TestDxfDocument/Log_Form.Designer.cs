@@ -151,6 +151,7 @@
             this.button_Clear.TabIndex = 12;
             this.button_Clear.Text = "Clear Input";
             this.button_Clear.UseVisualStyleBackColor = false;
+            this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
             // groupBox1
             // 
