@@ -19118,3 +19118,965 @@
         </member>
         <member name="T:netDxf.Vector3">
             <summary>
+            Represent a three component vector of double precision.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector3.#ctor(System.Double)">
+            <summary>
+            Initializes a new instance of Vector3.
+            </summary>
+            <param name="value">X, Y, Z component.</param>
+        </member>
+        <member name="M:netDxf.Vector3.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of Vector3.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+        </member>
+        <member name="M:netDxf.Vector3.#ctor(System.Double[])">
+            <summary>
+            Initializes a new instance of Vector3.
+            </summary>
+            <param name="array">Array of three elements that represents the vector.</param>
+        </member>
+        <member name="P:netDxf.Vector3.Zero">
+            <summary>
+            Zero vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.UnitX">
+            <summary>
+            Unit X vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.UnitY">
+            <summary>
+            Unit Y vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.UnitZ">
+            <summary>
+            Unit Z vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.NaN">
+            <summary>
+            Represents a vector with not a number components.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.X">
+            <summary>
+            Gets or sets the X component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.Y">
+            <summary>
+            Gets or sets the Y component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.Z">
+            <summary>
+            Gets or sets the Z component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector3.Item(System.Int32)">
+            <summary>
+            Gets or sets a vector element defined by its index.
+            </summary>
+            <param name="index">Index of the element.</param>
+        </member>
+        <member name="P:netDxf.Vector3.IsNormalized">
+            <summary>
+            Gets if the vector has been normalized.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector3.IsNaN(netDxf.Vector3)">
+            <summary>
+             Returns a value indicating if any component of the specified vector evaluates to a value that is not a number <see cref="F:System.Double.NaN"/>.
+            </summary>
+            <param name="u">Vector3.</param>
+            <returns>Returns true if any component of the specified vector evaluates to <see cref="F:System.Double.NaN"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.DotProduct(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the dot product of two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The dot product.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.CrossProduct(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the cross product of two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>Vector3.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Distance(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the distance between two points.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>Distance.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.SquareDistance(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the square distance between two points.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>Square distance.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.AngleBetween(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the angle between two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>Angle in radians.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.MidPoint(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Obtains the midpoint.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>Vector3.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.ArePerpendicular(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Checks if two vectors are perpendicular.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>True if are perpendicular or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.ArePerpendicular(netDxf.Vector3,netDxf.Vector3,System.Double)">
+            <summary>
+            Checks if two vectors are perpendicular.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <param name="threshold">Tolerance used.</param>
+            <returns>True if are perpendicular or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.AreParallel(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Checks if two vectors are parallel.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>True if are parallel or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.AreParallel(netDxf.Vector3,netDxf.Vector3,System.Double)">
+            <summary>
+            Checks if two vectors are parallel.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <param name="threshold">Tolerance used.</param>
+            <returns>True if are parallel or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Round(netDxf.Vector3,System.Int32)">
+            <summary>
+            Rounds the components of a vector.
+            </summary>
+            <param name="u">Vector to round.</param>
+            <param name="numDigits">Number of decimal places in the return value.</param>
+            <returns>The rounded vector.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Normalize(netDxf.Vector3)">
+            <summary>
+            Normalizes the vector.
+            </summary>
+            <param name="u">Vector to normalize</param>
+            <returns>A normalized vector.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Equality(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Check if the components of two vectors are equal.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>True if the three components are equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Inequality(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Check if the components of two vectors are different.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>True if the three components are different or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Addition(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Adds two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The addition of u plus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Add(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Adds two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The addition of u plus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Subtraction(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Subtracts two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The subtraction of u minus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Subtract(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Subtracts two vectors.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The subtraction of u minus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_UnaryNegation(netDxf.Vector3)">
+            <summary>
+            Negates a vector.
+            </summary>
+            <param name="u">Vector3.</param>
+            <returns>The negative vector of u.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Negate(netDxf.Vector3)">
+            <summary>
+            Negates a vector.
+            </summary>
+            <param name="u">Vector3.</param>
+            <returns>The negative vector of u.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Multiply(netDxf.Vector3,System.Double)">
+            <summary>
+            Multiplies a vector with an scalar (same as a*u, commutative property).
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="a">Scalar.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Multiply(netDxf.Vector3,System.Double)">
+            <summary>
+            Multiplies a vector with an scalar (same as a*u, commutative property).
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="a">Scalar.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Multiply(System.Double,netDxf.Vector3)">
+            <summary>
+            Multiplies a scalar with a vector (same as u*a, commutative property).
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector3.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Multiply(System.Double,netDxf.Vector3)">
+            <summary>
+            Multiplies a scalar with a vector (same as u*a, commutative property).
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector3.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Multiply(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Multiplies two vectors component by component.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Multiply(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Multiplies two vectors component by component.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Division(netDxf.Vector3,System.Double)">
+            <summary>
+            Divides an scalar with a vector.
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector3.</param>
+            <returns>The division of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Divide(netDxf.Vector3,System.Double)">
+            <summary>
+            Divides a vector with an scalar.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="a">Scalar.</param>
+            <returns>The division of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.op_Division(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Divides two vectors component by component.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Divide(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Divides two vectors component by component.
+            </summary>
+            <param name="u">Vector3.</param>
+            <param name="v">Vector3.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Normalize">
+            <summary>
+            Normalizes the current vector.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector3.Modulus">
+            <summary>
+            Obtains the modulus of the vector.
+            </summary>
+            <returns>Vector modulus.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.ToArray">
+            <summary>
+            Returns an array that represents the vector.
+            </summary>
+            <returns>Array.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Equals(netDxf.Vector3,netDxf.Vector3)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="a">Vector3.</param>
+            <param name="b">Vector3.</param>
+            <returns>True if the three components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Equals(netDxf.Vector3,netDxf.Vector3,System.Double)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="a">Vector3.</param>
+            <param name="b">Vector3.</param>
+            <param name="threshold">Maximum tolerance.</param>
+            <returns>True if the three components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Equals(netDxf.Vector3)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="other">Vector3.</param>
+            <returns>True if the three components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Equals(netDxf.Vector3,System.Double)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="other">Vector3.</param>
+            <param name="threshold">Maximum tolerance.</param>
+            <returns>True if the three components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <param name="other">Another object to compare to.</param>
+            <returns>True if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.ToString">
+            <summary>
+            Obtains a string that represents the vector.
+            </summary>
+            <returns>A string text.</returns>
+        </member>
+        <member name="M:netDxf.Vector3.ToString(System.IFormatProvider)">
+            <summary>
+            Obtains a string that represents the vector.
+            </summary>
+            <param name="provider">An IFormatProvider interface implementation that supplies culture-specific formatting information. </param>
+            <returns>A string text.</returns>
+        </member>
+        <member name="T:netDxf.Vector4">
+            <summary>
+            Represent a four component vector of double precision.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector4.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of Vector4.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="w">W component.</param>
+        </member>
+        <member name="M:netDxf.Vector4.#ctor(System.Double[])">
+            <summary>
+            Initializes a new instance of Vector4.
+            </summary>
+            <param name="array">Array of four elements that represents the vector.</param>
+        </member>
+        <member name="P:netDxf.Vector4.Zero">
+            <summary>
+            Zero vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.UnitX">
+            <summary>
+            Unit X vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.UnitY">
+            <summary>
+            Unit Y vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.UnitZ">
+            <summary>
+            Unit Z vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.UnitW">
+            <summary>
+            Unit W vector.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.NaN">
+            <summary>
+            Represents a vector with not a number components.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.X">
+            <summary>
+            Gets or sets the X component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.Y">
+            <summary>
+            Gets or sets the Y component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.Z">
+            <summary>
+            Gets or sets the Z component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.W">
+            <summary>
+            Gets or sets the W component.
+            </summary>
+        </member>
+        <member name="P:netDxf.Vector4.Item(System.Int32)">
+            <summary>
+            Gets or sets a vector element defined by its index.
+            </summary>
+            <param name="index">Index of the element.</param>
+        </member>
+        <member name="P:netDxf.Vector4.IsNormalized">
+            <summary>
+            Gets if the vector has been normalized.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector4.IsNaN(netDxf.Vector4)">
+            <summary>
+             Returns a value indicating if any component of the specified vector evaluates to a value that is not a number <see cref="F:System.Double.NaN"/>.
+            </summary>
+            <param name="u">Vector4.</param>
+            <returns>Returns true if any component of the specified vector evaluates to <see cref="F:System.Double.NaN"/>; otherwise, false.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.DotProduct(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Obtains the dot product of two vectors.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The dot product.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Distance(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Obtains the distance between two points.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>Distance.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.SquareDistance(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Obtains the square distance between two points.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>Square distance.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Round(netDxf.Vector4,System.Int32)">
+            <summary>
+            Rounds the components of a vector.
+            </summary>
+            <param name="u">Vector to round.</param>
+            <param name="numDigits">Number of decimal places in the return value.</param>
+            <returns>The rounded vector.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Normalize(netDxf.Vector4)">
+            <summary>
+            Normalizes the vector.
+            </summary>
+            <param name="u">Vector to normalize</param>
+            <returns>A normalized vector.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Equality(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Check if the components of two vectors are equal.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>True if the three components are equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Inequality(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Check if the components of two vectors are different.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>True if the three components are different or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Addition(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Adds two vectors.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The addition of u plus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Add(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Adds two vectors.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The addition of u plus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Subtraction(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Subtracts two vectors.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The subtraction of u minus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Subtract(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Subtracts two vectors.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The subtraction of u minus v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_UnaryNegation(netDxf.Vector4)">
+            <summary>
+            Negates a vector.
+            </summary>
+            <param name="u">Vector4.</param>
+            <returns>The negative vector of u.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Negate(netDxf.Vector4)">
+            <summary>
+            Negates a vector.
+            </summary>
+            <param name="u">Vector4.</param>
+            <returns>The negative vector of u.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Multiply(netDxf.Vector4,System.Double)">
+            <summary>
+            Multiplies a vector with an scalar (same as a*u, commutative property).
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="a">Scalar.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Multiply(netDxf.Vector4,System.Double)">
+            <summary>
+            Multiplies a vector with an scalar (same as a*u, commutative property).
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="a">Scalar.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Multiply(System.Double,netDxf.Vector4)">
+            <summary>
+            Multiplies a scalar with a vector (same as u*a, commutative property).
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector4.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Multiply(System.Double,netDxf.Vector4)">
+            <summary>
+            Multiplies a scalar with a vector (same as u*a, commutative property).
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector4.</param>
+            <returns>The multiplication of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Multiply(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Multiplies two vectors component by component.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Multiply(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Multiplies two vectors component by component.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Division(netDxf.Vector4,System.Double)">
+            <summary>
+            Divides an scalar with a vector.
+            </summary>
+            <param name="a">Scalar.</param>
+            <param name="u">Vector4.</param>
+            <returns>The division of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Divide(netDxf.Vector4,System.Double)">
+            <summary>
+            Divides a vector with an scalar.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="a">Scalar.</param>
+            <returns>The division of u times a.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.op_Division(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Divides two vectors component by component.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Divide(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Divides two vectors component by component.
+            </summary>
+            <param name="u">Vector4.</param>
+            <param name="v">Vector4.</param>
+            <returns>The multiplication of u times v.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Normalize">
+            <summary>
+            Normalizes the current vector.
+            </summary>
+        </member>
+        <member name="M:netDxf.Vector4.Modulus">
+            <summary>
+            Obtains the modulus of the vector.
+            </summary>
+            <returns>Vector modulus.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.ToArray">
+            <summary>
+            Returns an array that represents the vector.
+            </summary>
+            <returns>Array.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Equals(netDxf.Vector4,netDxf.Vector4)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="a">Vector4.</param>
+            <param name="b">Vector4.</param>
+            <returns>True if the four components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Equals(netDxf.Vector4,netDxf.Vector4,System.Double)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="a">Vector4.</param>
+            <param name="b">Vector4.</param>
+            <param name="threshold">Maximum tolerance.</param>
+            <returns>True if the four components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Equals(netDxf.Vector4)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="other">Vector4.</param>
+            <returns>True if the four components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Equals(netDxf.Vector4,System.Double)">
+            <summary>
+            Check if the components of two vectors are approximate equal.
+            </summary>
+            <param name="other">Vector4.</param>
+            <param name="threshold">Maximum tolerance.</param>
+            <returns>True if the four components are almost equal or false in any other case.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <param name="other">Another object to compare to.</param>
+            <returns>True if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.ToString">
+            <summary>
+            Obtains a string that represents the vector.
+            </summary>
+            <returns>A string text.</returns>
+        </member>
+        <member name="M:netDxf.Vector4.ToString(System.IFormatProvider)">
+            <summary>
+            Obtains a string that represents the vector.
+            </summary>
+            <param name="provider">An IFormatProvider interface implementation that supplies culture-specific formatting information. </param>
+            <returns>A string text.</returns>
+        </member>
+        <member name="T:netDxf.XData">
+            <summary>
+            Represents the extended data information.
+            </summary>
+            <remarks>
+            Do not store your own data under the ACAD application registry it is used by some entities to store special data,
+            it might be overwritten when the file is saved. Instead, create a new application registry and store your data there.
+            </remarks>
+        </member>
+        <member name="M:netDxf.XData.#ctor(netDxf.Tables.ApplicationRegistry)">
+            <summary>
+            Initialize a new instance of the <c>XData</c> class .
+            </summary>
+            <param name="appReg">Name of the application associated with the list of extended data records.</param>
+        </member>
+        <member name="P:netDxf.XData.ApplicationRegistry">
+            <summary>
+            Gets or sets the name of the application associated with the list of extended data records.
+            </summary>
+        </member>
+        <member name="P:netDxf.XData.XDataRecord">
+            <summary>
+            Gets or sets the list of extended data records.
+            </summary>
+            <remarks>
+            This list cannot contain a XDataRecord with a XDataCode of AppReg, this code is reserved to register the name of the application.
+            Any record with this code will be omitted.
+            </remarks>
+        </member>
+        <member name="M:netDxf.XData.ToString">
+            <summary>
+            Converts the value of this instance to its equivalent string representation.
+            </summary>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:netDxf.XData.Clone">
+            <summary>
+            Creates a new XData that is a copy of the current instance.
+            </summary>
+            <returns>A new XData that is a copy of this instance.</returns>
+        </member>
+        <member name="T:netDxf.XDataCode">
+            <summary>
+            Defines the extended data code.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.String">
+            <summary>
+            Strings in extended data can be up to 255 bytes long.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.AppReg">
+            <summary>
+            Application names can be up to 31 bytes long.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.ControlString">
+            <summary>
+            An extended data control string can be either “{” or “}”.
+            These braces enable applications to organize their data by subdividing the data into lists.
+            The left brace begins a list, and the right brace terminates the most recent list. Lists can be nested.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.LayerName">
+            <summary>
+            Name of the layer associated with the extended data
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.BinaryData">
+            <summary>
+            Binary data is organized into variable-length chunks.
+            The maximum length of each chunk is 127 bytes.
+            The binary data is represented as a string of hexadecimal digits, two per binary byte.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.DatabaseHandle">
+            <summary>
+            Handles of entities in the drawing database.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.RealX">
+            <summary>
+            Three real values, in the order X, Y, Z.
+            They can be used as a point or vector record. AutoCAD never alters their value.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.RealY">
+            <summary>
+            Three real values, in the order X, Y, Z.
+            They can be used as a point or vector record. AutoCAD never alters their value.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.RealZ">
+            <summary>
+            Three real values, in the order X, Y, Z.
+            They can be used as a point or vector record. AutoCAD never alters their value.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpacePositionX">
+            <summary>
+            Unlike a simple 3D point, the world space coordinates are moved, scaled, rotated, and mirrored 
+            along with the parent entity to which the extended data belongs. 
+            The world space position is also stretched when the STRETCH command is applied to the parent entity and
+            this point lies within the select window
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpacePositionY">
+            <summary>
+            Unlike a simple 3D point, the world space coordinates are moved, scaled, rotated, and mirrored 
+            along with the parent entity to which the extended data belongs. 
+            The world space position is also stretched when the STRETCH command is applied to the parent entity and
+            this point lies within the select window
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpacePositionZ">
+            <summary>
+            Unlike a simple 3D point, the world space coordinates are moved, scaled, rotated, and mirrored 
+            along with the parent entity to which the extended data belongs. 
+            The world space position is also stretched when the STRETCH command is applied to the parent entity and
+            this point lies within the select window
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpaceDisplacementX">
+            <summary>
+            Also a 3D point that is scaled, rotated, and mirrored along with the parent (but is not moved or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpaceDisplacementY">
+            <summary>
+            Also a 3D point that is scaled, rotated, and mirrored along with the parent (but is not moved or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldSpaceDisplacementZ">
+            <summary>
+            Also a 3D point that is scaled, rotated, and mirrored along with the parent (but is not moved or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldDirectionX">
+            <summary>
+            Also a 3D point that is rotated and mirrored along with the parent (but is not moved, scaled, or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldDirectionY">
+            <summary>
+            Also a 3D point that is rotated and mirrored along with the parent (but is not moved, scaled, or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.WorldDirectionZ">
+            <summary>
+            Also a 3D point that is rotated and mirrored along with the parent (but is not moved, scaled, or stretched)
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.Real">
+            <summary>
+            A real value.
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.Distance">
+            <summary>
+            A real value that is scaled along with the parent entity
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.ScaleFactor">
+            <summary>
+            Also a real value that is scaled along with the parent.
+            The difference between a distance and a scale factor is application-defined
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.Int16">
+            <summary>
+            A 16-bit integer (signed or unsigned).
+            </summary>
+        </member>
+        <member name="F:netDxf.XDataCode.Int32">
+            <summary>
+            A 32-bit signed integer.
+            </summary>
+        </member>
+        <member name="T:netDxf.XDataRecord">
+            <summary>
+            Represents an entry in the extended data of an entity.
+            </summary>
+        </member>
+        <member name="P:netDxf.XDataRecord.OpenControlString">
+            <summary>
+            An extended data control string can be either "{"or "}".
+            These braces enable applications to organize their data by subdividing the data into lists.
+            The left brace begins a list, and the right brace terminates the most recent list. Lists can be nested.
+            </summary>
+        </member>
+        <member name="P:netDxf.XDataRecord.CloseControlString">
+            <summary>
+            An extended data control string can be either "{" or "}".
+            These braces enable applications to organize their data by subdividing the data into lists.
+            The left brace begins a list, and the right brace terminates the most recent list. Lists can be nested.
+            </summary>
+        </member>
+        <member name="M:netDxf.XDataRecord.#ctor(netDxf.XDataCode,System.Object)">
+            <summary>
+            Initializes a new XDataRecord.
+            </summary>
+            <param name="code">XData code.</param>
+            <param name="value">XData value.</param>
+        </member>
+        <member name="P:netDxf.XDataRecord.Code">
+            <summary>
+            Gets the XData code.
+            </summary>
+            <remarks>The only valid values are the ones defined in the <see cref="T:netDxf.XDataCode">XDataCode</see> class.</remarks>
+        </member>
+        <member name="P:netDxf.XDataRecord.Value">
+            <summary>
+            Gets the XData value.
+            </summary>
+        </member>
+        <member name="M:netDxf.XDataRecord.ToString">
+            <summary>
+            Obtains a string that represents the XDataRecord.
+            </summary>
+            <returns>A string text.</returns>
+        </member>
+    </members>
+</doc>
