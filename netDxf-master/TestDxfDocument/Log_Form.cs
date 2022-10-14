@@ -31,9 +31,20 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace TestDxfDocument
 {
+    public static class Extensions
+    {
+        public static List<List<T>> partition<T>(this List<T> values, int chunkSize)
+        {
+            return values.Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+        }
+    }
     public partial class Log_Form : Form
     {
         List<string> layerNames = new List<string>();
@@ -138,12 +149,16 @@ namespace TestDxfDocument
                     ok = dxf.Layers.Remove(o.Name);
                     box_debug.Text += ("Deleting Layer : {0}", o.Name);
                     List<DxfObject> entities = dxf.Layers.GetReferences(o.Name);
+                    List<List<DxfObject>> partitions = entities.partition(8);
+
                     int xitems = 0;
-                    foreach (DxfObject obj in entities)
+                    int x = 0;
+                    foreach (List<DxfObject> p in partitions)
                     {
-                        dxf.Entities.Remove(obj as EntityObject);
-                        box_debug.Text += ("{0} Files deleted", xitems);
-                        xitems++;
+                        Thread i;
+                        i = new Thread(() => removeEntities(entities, xitems));
+                        i.Start();
+                        x++;
                     }
                     ok = dxf.Layers.Remove(o.Name);
                 }
@@ -152,7 +167,13 @@ namespace TestDxfDocument
             dxf.Linetypes.Clear();
             dxf.Save(outName + ".dxf");
         }
-
+        public void removeEntities(List<DxfObject> e,int items)
+        {
+            foreach(DxfObject o in e)
+            {
+                dxf.Entities.Remove(o as EntityObject);
+            }
+        }
         private void list_layers_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedItem= list_layers .SelectedItem.ToString();
@@ -167,6 +188,8 @@ namespace TestDxfDocument
         private void box_debug_TextChanged(object sender, EventArgs e)
         {
             box_debug.Text = box_debug.Text + "\n";
+            box_debug.SelectionStart = box_debug.Text.Length;
+            box_debug.ScrollToCaret();
         }
     }
 }
