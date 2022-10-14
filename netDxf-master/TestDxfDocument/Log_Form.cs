@@ -35,18 +35,10 @@ using System.Linq;
 
 namespace TestDxfDocument
 {
-    public static class Extensions
-    {
-        public static List<List<T>> partition<T>(this List<T> values, int chunkSize)
-        {
-            return values.Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => x.Index / chunkSize)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .ToList();
-        }
-    }
     public partial class Log_Form : Form
     {
+        Vector2 cMin, cMax;
+        double cCenter, cSize, cHoleGap, cTopBotGap;
         List<string> layerNames = new List<string>();
         public DxfDocument dxf;
         public Log_Form()
@@ -97,30 +89,59 @@ namespace TestDxfDocument
                 MessageBox.Show("No present dxf file");
             else
             {
-                ParseLayer(dxf, text_Output_Name.Text);
-                DxfDocument genDXF = DxfDocument.Load(String.Format("{0}.dxf",text_Output_Name.Text), new List<string> { @".\Support" });
-                foreach (var o in genDXF.Layers)
-                {
-                    if(o.Name == selectedItem)
-                    {
-                        List<DxfObject> entities = genDXF.Layers.GetReferences(o.Name);
-                        
-                        foreach (Polyline2D poly in entities)
-                        {
-                            foreach(var i in poly.Vertexes)
-                            {
-                                box_debug.Text += ("x" + i.Position.X.ToString(), "y"+ i.Position.Y.ToString());
-                            }
-                            
-                        }
-
-                            //for (int i = 0; i < dxf.Entities.ActiveLayout.Length) ;
-                    }   
-                }
+                ParseLayer(dxf);
+                GenerateCircles(dxf, text_Output_Name.Text);
             }
         }
-
-        public void ParseLayer(DxfDocument dxf, string outName)
+        private void GenerateCircles(DxfDocument doc, string outName)
+        {
+            List<double> xCoords = new List<double>();
+            List<double> yCoords = new List<double>();
+            List<double> xCircles = new List<double>();
+            List<double> yCircles = new List<double>();
+            List<Vector2> cCoords = new List<Vector2>();
+            List<DxfObject> entities = doc.Layers.GetReferences(selectedItem);
+            Layer layer = doc.Layers[selectedItem];
+            foreach (Polyline2D poly in entities)
+            {
+                foreach (var i in poly.Vertexes)
+                {
+                    box_debug.Text += ("x" + i.Position.X.ToString(), "y" + i.Position.Y.ToString());
+                    xCoords.Add(i.Position.X);
+                    yCoords.Add(i.Position.Y);
+                }
+            }
+            cSize = Convert.ToDouble(text_Hole_Size.Text);
+            cHoleGap = Convert.ToDouble(text_Gap_Hole.Text);
+            double holeGaps = 0.0;
+            for (double i = xCoords.Min(); i < xCoords.Max(); i++)
+            {
+                xCircles.Add(i+holeGaps);
+                holeGaps += cHoleGap;
+            }
+            holeGaps = 0.0;
+            for (double i = yCoords.Min(); i < yCoords.Max(); i++)
+            {
+                yCircles.Add(i);
+                holeGaps += cHoleGap;
+            }
+            foreach(double i in xCircles)
+            {
+                foreach(double j in yCircles)
+                {
+                    cCoords.Add(new Vector2(i,j));
+                }
+            }
+            foreach(Vector2 i in cCoords)
+            {
+                Circle circle = new Circle(i,cSize);
+                circle.Layer = layer;
+                doc.Entities.Add(circle);
+            }
+            dxf.Save(outName + ".dxf");
+            box_debug.Text += "Done creating DXF!";
+        }
+        public void ParseLayer(DxfDocument dxf)
         {
             layerNames.Remove(selectedItem);
             layerNames.Remove("0");
@@ -149,30 +170,18 @@ namespace TestDxfDocument
                     ok = dxf.Layers.Remove(o.Name);
                     box_debug.Text += ("Deleting Layer : {0}", o.Name);
                     List<DxfObject> entities = dxf.Layers.GetReferences(o.Name);
-                    List<List<DxfObject>> partitions = entities.partition(8);
-
                     int xitems = 0;
-                    int x = 0;
-                    foreach (List<DxfObject> p in partitions)
+                    foreach(DxfObject obj in entities)
                     {
-                        Thread i;
-                        i = new Thread(() => removeEntities(entities, xitems));
-                        i.Start();
-                        x++;
-                    }
+                        dxf.Entities.Remove(obj as EntityObject);
+                        box_debug.Text += xitems + " Files deleted";
+                        xitems++;
+                    }                    
                     ok = dxf.Layers.Remove(o.Name);
                 }
             }
             dxf.Layers.Clear();
             dxf.Linetypes.Clear();
-            dxf.Save(outName + ".dxf");
-        }
-        public void removeEntities(List<DxfObject> e,int items)
-        {
-            foreach(DxfObject o in e)
-            {
-                dxf.Entities.Remove(o as EntityObject);
-            }
         }
         private void list_layers_SelectedIndexChanged(object sender, EventArgs e)
         {
