@@ -200,7 +200,7 @@ namespace TestDxfDocument
 
             #region Samples for fixes, new and modified features 0.9.2
 
-            NurbsEvaluator();
+            //NurbsEvaluator();
             //XDataInformation();
             //DynamicBlocks();
 

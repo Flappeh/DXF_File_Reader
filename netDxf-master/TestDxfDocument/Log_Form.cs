@@ -32,6 +32,8 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace TestDxfDocument
 {
@@ -95,51 +97,69 @@ namespace TestDxfDocument
         }
         private void GenerateCircles(DxfDocument doc, string outName)
         {
+            List<Vector2> outerCoords = new List<Vector2>();
             List<double> xCoords = new List<double>();
             List<double> yCoords = new List<double>();
             List<double> xCircles = new List<double>();
             List<double> yCircles = new List<double>();
-            List<Vector2> cCoords = new List<Vector2>();
             List<DxfObject> entities = doc.Layers.GetReferences(selectedItem);
             Layer layer = doc.Layers[selectedItem];
+            cSize = Convert.ToDouble(text_Hole_Size.Text);
+            cHoleGap = Convert.ToDouble(text_Gap_Hole.Text);
+
             foreach (Polyline2D poly in entities)
             {
                 foreach (var i in poly.Vertexes)
                 {
                     box_debug.Text += ("x" + i.Position.X.ToString(), "y" + i.Position.Y.ToString());
+                    outerCoords.Add(i.Position);
                     xCoords.Add(i.Position.X);
                     yCoords.Add(i.Position.Y);
                 }
             }
-            cSize = Convert.ToDouble(text_Hole_Size.Text);
-            cHoleGap = Convert.ToDouble(text_Gap_Hole.Text);
-            double holeGaps = 0.0;
-            for (double i = xCoords.Min(); i < xCoords.Max(); i++)
+            for (double i = xCoords.Min()+ cHoleGap; i < xCoords.Max()- cHoleGap; i+= (cHoleGap+cSize * 2))
             {
-                xCircles.Add(i+holeGaps);
-                holeGaps += cHoleGap;
+                xCircles.Add(i+ cHoleGap);
             }
-            holeGaps = 0.0;
-            for (double i = yCoords.Min(); i < yCoords.Max(); i++)
+            for (double i = yCoords.Min()+ cHoleGap; i < yCoords.Max()- cHoleGap; i+= (cHoleGap + cSize * 2))
             {
-                yCircles.Add(i);
-                holeGaps += cHoleGap;
+                yCircles.Add(i + cHoleGap);
             }
             foreach(double i in xCircles)
             {
-                foreach(double j in yCircles)
+                foreach (double j in yCircles)
                 {
-                    cCoords.Add(new Vector2(i,j));
+                    Vector2 cPoint = new Vector2(i, j);
+                    Circle circle = new Circle(cPoint, cSize);
+                    circle.Layer = layer;
+                    doc.Entities.Add(circle);
+                    
                 }
             }
-            foreach(Vector2 i in cCoords)
+            doc.Save(outName + ".dxf");
+            DxfDocument docs = DxfDocument.Load(outName+".dxf", new List<string> { @".\Support" });
+            foreach (Polyline2D poly in entities)
             {
-                Circle circle = new Circle(i,cSize);
-                circle.Layer = layer;
-                doc.Entities.Add(circle);
+                foreach(Circle cir in )
             }
-            dxf.Save(outName + ".dxf");
+            docs.Save(outName + ".dxf");
             box_debug.Text += "Done creating DXF!";
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public static bool checkOverlap(double rad, Vector3 circle, Vector2 poly1, Vector2 poly2)
+        {
+            double m = (poly2.Y - poly1.Y) / (poly2.X - poly1.X);
+            double dist = (Math.Abs((poly1.Y - poly2.Y) * circle.X + (poly2.X - poly1.X) * circle.Y + m) / Math.Sqrt((poly1.Y - poly2.Y) * (poly1.Y - poly2.Y) + (poly2.X - poly1.X) * (poly2.X - poly1.X)));
+            //Vector2 nearest = new Vector2((Math.Max(poly1.X, Math.Min(rad, poly2.X))), (Math.Max(poly1.Y, Math.Min(rad, poly2.Y))));
+            //double Dx = nearest.X - circle.X;
+            //double Dy = nearest.Y - circle.Y;
+            //return (Dx * Dx + Dy * Dy) * 2 <= rad * rad;
+            return dist >= rad;
         }
         public void ParseLayer(DxfDocument dxf)
         {
@@ -185,13 +205,19 @@ namespace TestDxfDocument
         }
         private void list_layers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedItem= list_layers .SelectedItem.ToString();
+            selectedItem= list_layers.SelectedItem.ToString();
             box_debug.Text += "Layer : "+ selectedItem+ " is saved!";
         }
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
             dxf = new DxfDocument();
+            list_layers.Items.Clear();
+            list_layers.Text = "";
+            text_Gap_Hole.Clear();
+            text_Gap_TopBot.Clear();
+            text_Hole_Size.Clear();
+            text_Output_Name.Clear();
         }
 
         private void box_debug_TextChanged(object sender, EventArgs e)
