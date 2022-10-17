@@ -131,39 +131,42 @@ namespace TestDxfDocument
                     Vector2 cPoint = new Vector2(i, j);
                     for(int u = 0; u < outerCoords.Count(); u++)
                     {
-                        if (outerCoords[u].X < 0 && outerCoords[u].Y < 0)
+                        double distLine = Vector2.Distance(outerCoords[u], new Vector2(0, 0));
+                        double distCir = Vector2.Distance(cPoint, new Vector2(0, 0));
+                        if (outerCoords[u].X < 0 && outerCoords[u].Y < 0 && (cPoint.X <= 0 && cPoint.Y <= 0))
                         {
                             //q3
-                            if(cPoint.X <= 0 && cPoint.Y <= 0 && (cPoint.X > outerCoords[u].X &&  cPoint.Y > outerCoords[u].Y))
+                            ///if((cPoint.X > outerCoords[u].X && cPoint.Y < outerCoords[u].Y) || (cPoint.X < outerCoords[u].X && cPoint.Y > outerCoords[u].Y) && (cPoint.X > outerCoords[u].X &&  cPoint.Y > outerCoords[u].Y))
+                            if (distCir+cHoleGap < distLine)
                             {
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
                             }
                         }
-                        if (outerCoords[u].X < 0 && outerCoords[u].Y > 0)
+                        if ((cPoint.X <= 0 && cPoint.Y >= 0) && (outerCoords[u].X < 0 && outerCoords[u].Y > 0))
                         {
                             //q2
-                            if (cPoint.X <= 0 && cPoint.Y >= 0 && (cPoint.X > outerCoords[u].X && cPoint.Y < outerCoords[u].Y))
+                            if (distCir + cHoleGap < distLine)
                             {
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
                             }
                         }
-                        if (outerCoords[u].X > 0 && outerCoords[u].Y > 0)
+                        if ((cPoint.X >= 0 && cPoint.Y >= 0) && outerCoords[u].X > 0 && outerCoords[u].Y > 0)
                         {
                             //q1
-                            if (cPoint.X >= 0 && cPoint.Y >= 0 && (cPoint.X < outerCoords[u].X && cPoint.Y < outerCoords[u].Y))
+                            if (distCir + cHoleGap < distLine)
                             {
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
                             }
                         }
-                        if (outerCoords[u].X > 0 && outerCoords[u].Y < 0)
+                        if ((cPoint.X >= 0 && cPoint.Y <= 0) && outerCoords[u].X > 0 && outerCoords[u].Y < 0)
                         {
-                            if (cPoint.X >= 0 && cPoint.Y <= 0 && (cPoint.X < outerCoords[u].X && cPoint.Y > outerCoords[u].Y))
+                            if (distCir + cHoleGap < distLine)
                             {
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
