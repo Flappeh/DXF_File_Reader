@@ -34,6 +34,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Reflection.Emit;
 
 namespace TestDxfDocument
 {
@@ -98,6 +99,7 @@ namespace TestDxfDocument
         private void GenerateCircles(DxfDocument doc, string outName)
         {
             List<Vector2> outerCoords = new List<Vector2>();
+            List<Vector2> cirCoords = new List<Vector2>();
             List<double> xCoords = new List<double>();
             List<double> yCoords = new List<double>();
             List<double> xCircles = new List<double>();
@@ -124,76 +126,90 @@ namespace TestDxfDocument
             {
                 yCircles.Add(i);
             }
-            foreach (double i in xCircles)
+            for(int i=0; i<xCircles.Count; i++)
             {
-                foreach (double j in yCircles)
+                for (int j = 0; j < yCircles.Count; j++)
                 {
-                    Vector2 cPoint = new Vector2(i, j);
-                    for(int u = 0; u < outerCoords.Count(); u++)
+
+                    cirCoords.Add(new Vector2(xCircles[i], yCircles[j]));
+                }
+            }
+            foreach(List<Vector2> list in Split(cirCoords, 8))
+            {
+                foreach (Vector2 cPoint in list)
+                {
+                    for (int u = 0; u < outerCoords.Count(); u++)
                     {
                         double distLine = Vector2.Distance(outerCoords[u], new Vector2(0, 0));
                         double distCir = Vector2.Distance(cPoint, new Vector2(0, 0));
-                        if (outerCoords[u].X < 0 && outerCoords[u].Y < 0 && (cPoint.X <= 0 && cPoint.Y <= 0))
+                        if (distCir + cHoleGap < distLine)
                         {
-                            //q3
-                            ///if((cPoint.X > outerCoords[u].X && cPoint.Y < outerCoords[u].Y) || (cPoint.X < outerCoords[u].X && cPoint.Y > outerCoords[u].Y) && (cPoint.X > outerCoords[u].X &&  cPoint.Y > outerCoords[u].Y))
-                            if (distCir+cHoleGap < distLine)
+                            if (outerCoords[u].X < 0 && outerCoords[u].Y < 0 && (cPoint.X <= 0 && cPoint.Y <= 0))
                             {
+                                //q3
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
                             }
-                        }
-                        if ((cPoint.X <= 0 && cPoint.Y >= 0) && (outerCoords[u].X < 0 && outerCoords[u].Y > 0))
-                        {
-                            //q2
-                            if (distCir + cHoleGap < distLine)
+                            if ((cPoint.X <= 0 && cPoint.Y >= 0) && (outerCoords[u].X < 0 && outerCoords[u].Y > 0))
                             {
+                                //q2
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
                             }
-                        }
-                        if ((cPoint.X >= 0 && cPoint.Y >= 0) && outerCoords[u].X > 0 && outerCoords[u].Y > 0)
-                        {
-                            //q1
-                            if (distCir + cHoleGap < distLine)
+                            if ((cPoint.X >= 0 && cPoint.Y >= 0) && outerCoords[u].X > 0 && outerCoords[u].Y > 0)
                             {
+                                //q1
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
+
                             }
-                        }
-                        if ((cPoint.X >= 0 && cPoint.Y <= 0) && outerCoords[u].X > 0 && outerCoords[u].Y < 0)
-                        {
-                            if (distCir + cHoleGap < distLine)
+                            if ((cPoint.X >= 0 && cPoint.Y <= 0) && outerCoords[u].X > 0 && outerCoords[u].Y < 0)
                             {
+
                                 Circle circle = new Circle(cPoint, cSize);
                                 circle.Layer = layer;
                                 doc.Entities.Add(circle);
+
                             }
                         }
 
                     }
                 }
+
+                
             }
-            List<Circle> cir = new List<Circle>(doc.Entities.Circles);
-            doc.Save(outName + ".dxf");
-            DxfDocument docs = DxfDocument.Load(outName + ".dxf", new List<string> { @".\Support" });
-            foreach (Polyline2D poly in entities)
-            {
-                for (int i = 0; i < cir.Count(); i++)
-                { 
-                    if (!checkOverlap(cSize, cir[i].Center, poly.Vertexes[0].Position, poly.Vertexes[1].Position))
-                    {
-                        docs.Entities.Remove(cir);
-                    }
-                }
-            }
+                
+            //List<Circle> cir = new List<Circle>(doc.Entities.Circles);
+            //doc.Save(outName + ".dxf");
+            //DxfDocument docs = DxfDocument.Load(outName + ".dxf", new List<string> { @".\Support" });
+            //foreach (Polyline2D poly in entities)
+            //{
+            //    for (int i = 0; i < cir.Count(); i++)
+            //    { 
+            //        if (!checkOverlap(cSize, cir[i].Center, poly.Vertexes[0].Position, poly.Vertexes[1].Position))
+            //        {
+            //            docs.Entities.Remove(cir);
+            //        }
+            //    }
+            //}
             doc.Save(outName + ".dxf");
             box_debug.Text += "Done creating DXF!";
         }
+        public static List<List<T>> Split<T>(IList<T> source,int chunkSize)
+        {
+            return source
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / chunkSize)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .ToList();
+        }
+        private void CreateCircles()
+        {
 
+        }
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -270,7 +286,7 @@ namespace TestDxfDocument
 
         private void box_debug_TextChanged(object sender, EventArgs e)
         {
-            box_debug.Text = box_debug.Text + "\n";
+            box_debug.Text += '\n';
             box_debug.SelectionStart = box_debug.Text.Length;
             box_debug.ScrollToCaret();
         }

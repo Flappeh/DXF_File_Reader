@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kerja\\DXF\\Application\\DXF_Reader\\DXF_Reader.csproj": {}
+    "D:\\Kerja\\Meister\\Application\\DXF_Reader\\DXF_Reader.csproj": {}
   },
   "projects": {
-    "D:\\Kerja\\DXF\\Application\\DXF_Reader\\DXF_Reader.csproj": {
+    "D:\\Kerja\\Meister\\Application\\DXF_Reader\\DXF_Reader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kerja\\DXF\\Application\\DXF_Reader\\DXF_Reader.csproj",
+        "projectUniqueName": "D:\\Kerja\\Meister\\Application\\DXF_Reader\\DXF_Reader.csproj",
         "projectName": "DXF_Reader",
-        "projectPath": "D:\\Kerja\\DXF\\Application\\DXF_Reader\\DXF_Reader.csproj",
-        "packagesPath": "C:\\Users\\bonar\\.nuget\\packages\\",
-        "outputPath": "D:\\Kerja\\DXF\\Application\\DXF_Reader\\obj\\",
+        "projectPath": "D:\\Kerja\\Meister\\Application\\DXF_Reader\\DXF_Reader.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\Kerja\\Meister\\Application\\DXF_Reader\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bonar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\netDxf.csproj": {
-                "projectPath": "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\netDxf.csproj"
+              "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj": {
+                "projectPath": "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj"
               }
             }
           }
@@ -72,18 +76,22 @@
         }
       }
     },
-    "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\netDxf.csproj": {
+    "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj": {
       "version": "3.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\netDxf.csproj",
+        "projectUniqueName": "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj",
         "projectName": "netDxf",
-        "projectPath": "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\netDxf.csproj",
-        "packagesPath": "C:\\Users\\bonar\\.nuget\\packages\\",
-        "outputPath": "D:\\Kerja\\DXF\\netDxf-master\\netDxf\\obj\\",
+        "projectPath": "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\netDxf.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\Kerja\\Meister\\netDxf-master\\netDxf\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bonar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
