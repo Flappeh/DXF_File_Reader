@@ -106,7 +106,6 @@ namespace TestDxfDocument
             Layer layer = doc.Layers[selectedItem];
             cSize = Convert.ToDouble(text_Hole_Size.Text);
             cHoleGap = Convert.ToDouble(text_Gap_Hole.Text);
-
             foreach (Polyline2D poly in entities)
             {
                 foreach (var i in poly.Vertexes)
@@ -117,32 +116,78 @@ namespace TestDxfDocument
                     yCoords.Add(i.Position.Y);
                 }
             }
-            for (double i = xCoords.Min()+ cHoleGap; i < xCoords.Max()- cHoleGap; i+= (cHoleGap+cSize * 2))
+            for (double i = xCoords.Min() + cHoleGap; i < xCoords.Max() - cHoleGap; i += cHoleGap)
             {
-                xCircles.Add(i+ cHoleGap);
+                xCircles.Add(i);
             }
-            for (double i = yCoords.Min()+ cHoleGap; i < yCoords.Max()- cHoleGap; i+= (cHoleGap + cSize * 2))
+            for (double i = yCoords.Min() + cHoleGap; i < yCoords.Max() - cHoleGap; i += cHoleGap)
             {
-                yCircles.Add(i + cHoleGap);
+                yCircles.Add(i);
             }
-            foreach(double i in xCircles)
+            foreach (double i in xCircles)
             {
                 foreach (double j in yCircles)
                 {
                     Vector2 cPoint = new Vector2(i, j);
-                    Circle circle = new Circle(cPoint, cSize);
-                    circle.Layer = layer;
-                    doc.Entities.Add(circle);
-                    
+                    for(int u = 0; u < outerCoords.Count(); u++)
+                    {
+                        if (outerCoords[u].X < 0 && outerCoords[u].Y < 0)
+                        {
+                            //q3
+                            if(cPoint.X <= 0 && cPoint.Y <= 0 && (cPoint.X > outerCoords[u].X &&  cPoint.Y > outerCoords[u].Y))
+                            {
+                                Circle circle = new Circle(cPoint, cSize);
+                                circle.Layer = layer;
+                                doc.Entities.Add(circle);
+                            }
+                        }
+                        if (outerCoords[u].X < 0 && outerCoords[u].Y > 0)
+                        {
+                            //q2
+                            if (cPoint.X <= 0 && cPoint.Y >= 0 && (cPoint.X > outerCoords[u].X && cPoint.Y < outerCoords[u].Y))
+                            {
+                                Circle circle = new Circle(cPoint, cSize);
+                                circle.Layer = layer;
+                                doc.Entities.Add(circle);
+                            }
+                        }
+                        if (outerCoords[u].X > 0 && outerCoords[u].Y > 0)
+                        {
+                            //q1
+                            if (cPoint.X >= 0 && cPoint.Y >= 0 && (cPoint.X < outerCoords[u].X && cPoint.Y < outerCoords[u].Y))
+                            {
+                                Circle circle = new Circle(cPoint, cSize);
+                                circle.Layer = layer;
+                                doc.Entities.Add(circle);
+                            }
+                        }
+                        if (outerCoords[u].X > 0 && outerCoords[u].Y < 0)
+                        {
+                            if (cPoint.X >= 0 && cPoint.Y <= 0 && (cPoint.X < outerCoords[u].X && cPoint.Y > outerCoords[u].Y))
+                            {
+                                Circle circle = new Circle(cPoint, cSize);
+                                circle.Layer = layer;
+                                doc.Entities.Add(circle);
+                            }
+                        }
+
+                    }
+                }
+            }
+            List<Circle> cir = new List<Circle>(doc.Entities.Circles);
+            doc.Save(outName + ".dxf");
+            DxfDocument docs = DxfDocument.Load(outName + ".dxf", new List<string> { @".\Support" });
+            foreach (Polyline2D poly in entities)
+            {
+                for (int i = 0; i < cir.Count(); i++)
+                { 
+                    if (!checkOverlap(cSize, cir[i].Center, poly.Vertexes[0].Position, poly.Vertexes[1].Position))
+                    {
+                        docs.Entities.Remove(cir);
+                    }
                 }
             }
             doc.Save(outName + ".dxf");
-            DxfDocument docs = DxfDocument.Load(outName+".dxf", new List<string> { @".\Support" });
-            foreach (Polyline2D poly in entities)
-            {
-                foreach(Circle cir in )
-            }
-            docs.Save(outName + ".dxf");
             box_debug.Text += "Done creating DXF!";
         }
 
