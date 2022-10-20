@@ -230,6 +230,7 @@
             this.text_Gap_TopBot.Name = "text_Gap_TopBot";
             this.text_Gap_TopBot.Size = new System.Drawing.Size(134, 23);
             this.text_Gap_TopBot.TabIndex = 2;
+            this.text_Gap_TopBot.TextChanged += new System.EventHandler(this.text_Gap_TopBot_TextChanged);
             // 
             // text_Hole_Size
             // 
