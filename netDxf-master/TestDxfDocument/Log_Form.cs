@@ -36,6 +36,7 @@ using System.Reflection.Emit;
 using System.Text.RegularExpressions;
 using System.Net.Security;
 using System.Numerics;
+using System.Configuration;
 
 namespace TestDxfDocument
 {
@@ -43,11 +44,14 @@ namespace TestDxfDocument
     {
         double cSize, cHoleGap, cTopBotGap;
         List<string> layerNames = new List<string>();
-        List<DxfObject> TOP_Entities = new List<DxfObject> ();
-        List<DxfObject> BOT_Entities = new List<DxfObject>();
-        List<Polyline2D> polylines = new List<Polyline2D> ();
+        List<Polyline2D> tbPols = new List<Polyline2D> ();
+        //List<DxfObject> TOP_Entities = new List<DxfObject>();
+        //List<DxfObject> BOT_Entities = new List<DxfObject>();
+        List<Circle> tbCircs = new List<Circle>();
+        List<Vector2> cirCoords = new List<Vector2>();
         List<Circle> topCircle = new List<Circle>();
         List<Circle> botCircle = new List<Circle>();
+        List<Vector2> tb_Vectors = new List<Vector2>();
         List<Vector2> top_Vectors = new List<Vector2>();
         List<Vector2> bot_Vectors = new List<Vector2>();
         List<double> xCoordsTH = new List<double>();
@@ -103,8 +107,8 @@ namespace TestDxfDocument
             else
             {
                 watch.Start();
-                parseTOPBOT(dxf);
                 ParseLayer(dxf);
+                parseTOPBOT(dxf);
                 GenerateCircles(dxf, text_Output_Name.Text);
                 watch.Stop();
                 box_debug.Text += "\tloading time: " + (watch.ElapsedMilliseconds / 1000.0)+" seconds" ;
@@ -113,50 +117,72 @@ namespace TestDxfDocument
         public void parseTOPBOT(DxfDocument doc)
         {
 
-            TOP_Entities = doc.Layers.GetReferences("PIN_TOP");
-            BOT_Entities = doc.Layers.GetReferences("PIN_BOTTOM");
-
-            foreach (DxfObject i in TOP_Entities)
+            tbPols = new List<Polyline2D>(doc.Entities.Polylines2D);
+            tbCircs = new List<Circle>(doc.Entities.Circles);
+            foreach (List<Polyline2D> list in Split(tbPols, 6))
             {
-                if (i.GetType() == typeof(Polyline2D))
+                foreach (Polyline2D i in list)
                 {
-                    Polyline2D polyline = (Polyline2D)i;
-                    polylines.Add(polyline);
-                    top_Vectors.Add(polyline.Vertexes[0].Position);
-                    top_Vectors.Add(polyline.Vertexes[1].Position);
-                }
-                else if (i.GetType() == typeof(Circle))
-                {
-                    Circle circle = (Circle)i;
-                    topCircle.Add(circle);
-                    top_Vectors.Add(new Vector2(circle.Center.X, circle.Center.Y));
+                    tb_Vectors.Add(i.Vertexes[0].Position);
+                    tb_Vectors.Add(i.Vertexes[1].Position);
+                    tbPols.Add(i);
+                    //top_Vectors.Add(i.Vertexes[0].Position);
+                    //top_Vectors.Add(i.Vertexes[1].Position);
+                    //bot_Vectors.Add(i.Vertexes[0].Position);
+                    //bot_Vectors.Add(i.Vertexes[1].Position);
                 }
             }
-            foreach (DxfObject i in BOT_Entities)
+            tbPols = new List<Polyline2D>(tbPols.Distinct());
+            foreach (List<Circle> list in Split(tbCircs, 6))
             {
-                if (i.GetType() == typeof(Polyline2D))
+                foreach (Circle i in list)
                 {
-                    Polyline2D polyline = (Polyline2D)i;
-                    polylines.Add(polyline);
-                    bot_Vectors.Add(polyline.Vertexes[0].Position);
-                    bot_Vectors.Add(polyline.Vertexes[1].Position);
-                }
-                else if (i.GetType() == typeof(Circle))
-                {
-                    Circle circle = (Circle)i;
-                    botCircle.Add(circle);
-                    bot_Vectors.Add(new Vector2(circle.Center.X, circle.Center.Y));
+                    tbCircs.Add(i);
+                    tb_Vectors.Add(new Vector2(i.Center.X, i.Center.Y));
                 }
             }
-            TOP_Entities.Clear();
-            BOT_Entities.Clear();
+            tbCircs = new List<Circle>(tbCircs.Distinct());
+            tb_Vectors = new List<Vector2>(tb_Vectors.Distinct());
+            //TOP_Entities = doc.Layers.GetReferences("PIN_TOP");
+            //BOT_Entities = doc.Layers.GetReferences("PIN_BOTTOM");
 
+            //foreach (DxfObject i in TOP_Entities)
+            //{
+            //    if (i.GetType() == typeof(Polyline2D))
+            //    {
+            //        Polyline2D polyline = (Polyline2D)i;
+            //        top_Vectors.Add(polyline.Vertexes[0].Position);
+            //        top_Vectors.Add(polyline.Vertexes[1].Position);
+            //    }
+            //    else if (i.GetType() == typeof(Circle))
+            //    {
+            //        Circle circle = (Circle)i;
+            //        topCircle.Add(circle);
+            //        top_Vectors.Add(new Vector2(circle.Center.X, circle.Center.Y));
+            //    }
+            //}
+            //foreach (DxfObject i in BOT_Entities)
+            //{
+            //    if (i.GetType() == typeof(Polyline2D))
+            //    {
+            //        Polyline2D polyline = (Polyline2D)i;
+            //        bot_Vectors.Add(polyline.Vertexes[0].Position);
+            //        bot_Vectors.Add(polyline.Vertexes[1].Position);
+            //    }
+            //    else if (i.GetType() == typeof(Circle))
+            //    {
+            //        Circle circle = (Circle)i;
+            //        botCircle.Add(circle);
+            //        bot_Vectors.Add(new Vector2(circle.Center.X, circle.Center.Y));
+            //    }
+            //}
+            //TOP_Entities.Clear();
+            //BOT_Entities.Clear();
         }
         private void GenerateCircles(DxfDocument doc, string outName)
         {
 
             List<Vector2> outerCoords = new List<Vector2>();
-            List<Vector2> cirCoords = new List<Vector2>();
             List<double> xCircles = new List<double>();
             List<double> yCircles = new List<double>();
             List<DxfObject> bg_outline_Entities = doc.Layers.GetReferences(selectedItem);
@@ -193,60 +219,72 @@ namespace TestDxfDocument
                     cirCoords.Add(cVec);
                 }
             }
-            foreach (List<Vector2> list in Split(top_Vectors, 6))
+            xCircles.Clear();
+            yCircles.Clear();
+
+
+            //Thread c = new Thread(() => remWithCircs(topCircle));
+            //a.Start(); 
+            List<Thread> tVecs = new List<Thread>();
+            int splits = 6;
+            int vecsSize = tb_Vectors.Count();
+            while (splits <= 14)
             {
-                foreach (Vector2 tops in list)
+                if (vecsSize % splits == 0)
                 {
-                    for (int u = 0; u < cirCoords.Count(); u++)
-                    {
-                        double TDistance = Vector2.Distance(tops, cirCoords[u]);
-                        if (TDistance <= cTopBotGap + cSize )
-                        {
-                            cirCoords.Remove(cirCoords[u]);
-                        }
-                    }
+                    break;
+                }
+                else
+                {
+                    splits++;
+                }
+                if(splits == 14)
+                {
+                    splits = 6;
+                    tb_Vectors.RemoveAt(tb_Vectors.Count()-1);
+                    vecsSize = tb_Vectors.Count();
                 }
             }
-            foreach (List<Vector2> list in Split(bot_Vectors, 6))
+            List<List<Vector2>> lvecs = new List<List<Vector2>>();
+            foreach(List<Vector2> vecs in Split(tb_Vectors, vecsSize/splits))
             {
-                foreach (Vector2 bots in list)
+                lvecs.Add(vecs);
+            }
+            for(int i = 0; i < lvecs.Count(); i++)
+            {
+                tVecs.Add(new Thread(() => remWithVecs(lvecs[i])));
+                tVecs[i].Start();
+
+            }
+            for(int i = 0; i < tVecs.Count(); i++)
+            {
+                tVecs[i].Join();
+            }
+            tVecs.Clear();
+            List<List<Circle>> listCircs = Split(tbCircs, 8);
+            for (int i = 0; i < listCircs.Count()-1; i++)
+            {
+                tVecs.Add(new Thread(() => remWithCircs(listCircs[i])));
+                tVecs[i].Start();
+            }
+            for (int i = 0; i < tVecs.Count(); i++)
+            {
+                tVecs[i].Join();
+            }
+            foreach (Circle j in listCircs[listCircs.Count() - 1])
+            {
+                for (int i = 0; i < cirCoords.Count(); i++)
                 {
-                    for (int u = 0; u < cirCoords.Count(); u++)
+                    if (checkCircle(new Vector2(j.Center.X, j.Center.Y), cirCoords[i], j.Radius, cSize))
                     {
-                        double Distance = Vector2.Distance(bots, cirCoords[u]);
-                        if (Distance <= cTopBotGap + cSize)
-                        {
-                            cirCoords.Remove(cirCoords[u]);
-                        }
+                        cirCoords.Remove(cirCoords[i]);
                     }
+
                 }
             }
-            foreach (List<Circle> list in Split(topCircle, 6))
-            {
-                foreach (Circle i in list)
-                {
-                    for (int u = 0; u < cirCoords.Count(); u++)
-                    {
-                        if (checkCircle(new Vector2(i.Center.X, i.Center.Y), cirCoords[u], cSize, i.Radius))
-                        {
-                            cirCoords.Remove(cirCoords[u]);
-                        }
-                    }
-                }
-            }
-            foreach (List<Circle> list in Split(botCircle, 6))
-            {
-                foreach (Circle i in list)
-                {
-                    for (int u = 0; u < cirCoords.Count(); u++)
-                    {
-                        if (checkCircle(new Vector2(i.Center.X, i.Center.Y), cirCoords[u], cSize, i.Radius))
-                        {
-                            cirCoords.Remove(cirCoords[u]);
-                        }
-                    }
-                }
-            }
+            //c.Join();
+            topCircle.Clear();
+            botCircle.Clear();
             foreach (List<Vector2> list in Split(cirCoords, 8))
             {
                 foreach (Vector2 cPoint in list)
@@ -292,10 +330,72 @@ namespace TestDxfDocument
                     }
                 }
 
-                
+
             }
             doc.Save(outName + ".dxf");
             box_debug.Text += "Done creating DXF!";
+
+            //foreach (List<Circle> list in Split(topCircle, 6))
+            //{
+            //    foreach (Circle i in list)
+            //    {
+            //        for (int u = 0; u < cirCoords.Count(); u++)
+            //        {
+            //            if (checkCircle(new Vector2(i.Center.X, i.Center.Y), cirCoords[u], cSize, i.Radius))
+            //            {
+            //                cirCoords.Remove(cirCoords[u]);
+            //            }
+            //        }
+            //    }
+            //}
+            //foreach (List<Circle> list in Split(botCircle, 6))
+            //{
+            //    foreach (Circle i in list)
+            //    {
+            //        for (int u = 0; u < cirCoords.Count(); u++)
+            //        {
+            //            if (checkCircle(new Vector2(i.Center.X, i.Center.Y), cirCoords[u], cSize, i.Radius))
+            //            {
+            //                cirCoords.Remove(cirCoords[u]);
+            //            }
+            //        }
+            //    }
+            //}
+
+        }
+        public void remWithCircs(List<Circle> circs)
+        {
+            foreach(List<Circle> list in Split(circs, 9))
+            {
+                foreach(Circle j in list)
+                {
+                    for (int i = 0; i < cirCoords.Count(); i++)
+                    {
+                        if (checkCircle(new Vector2(j.Center.X, j.Center.Y), cirCoords[i], j.Radius, cSize))
+                        {
+                            cirCoords.Remove(cirCoords[i]);
+                        }
+
+                    }
+                }
+            }
+        }
+        public void remWithVecs(List<Vector2> vec)
+        {
+            foreach (List<Vector2> list in Split(vec, 9))
+            {
+                foreach (Vector2 tops in list)
+                {
+                    for (int u = 0; u < cirCoords.Count(); u++)
+                    {
+                        double TDistance = Vector2.Distance(tops, cirCoords[u]);
+                        if (TDistance <= cTopBotGap + cSize)
+                        {
+                            cirCoords.Remove(cirCoords[u]);
+                        }
+                    }
+                }
+            }
         }
         public static List<List<T>> Split<T>(IList<T> source,int chunkSize)
         {
