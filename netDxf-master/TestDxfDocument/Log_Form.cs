@@ -141,8 +141,14 @@ namespace TestDxfDocument
                     tb_Vectors.Add(new Vector2(i.Center.X, i.Center.Y));
                 }
             }
-            tbCircs = new List<Circle>(tbCircs.Distinct());
-            tb_Vectors = new List<Vector2>(tb_Vectors.Distinct());
+            List<Circle> a = new List<Circle>();
+            List<Vector2> b = new List<Vector2>();
+            a = tbCircs.Distinct().ToList();
+            b = tb_Vectors.Distinct().ToList();
+            tbCircs.Clear();
+            tb_Vectors.Clear();
+            tbCircs = a;
+            tb_Vectors = b;
             //TOP_Entities = doc.Layers.GetReferences("PIN_TOP");
             //BOT_Entities = doc.Layers.GetReferences("PIN_BOTTOM");
 
@@ -211,18 +217,27 @@ namespace TestDxfDocument
             {
                 yCircles.Add(i);
             }
-            for(int i=0; i<xCircles.Count; i++)
+            foreach (List<double> list in Split(xCircles, 6))
             {
-                for (int j = 0; j < yCircles.Count; j++)
+                foreach(double i in list)
                 {
-                    Vector2 cVec = new Vector2(xCircles[i], yCircles[j]);
-                    cirCoords.Add(cVec);
+                    foreach(double j in yCircles)
+                    {
+                        Vector2 cVec = new Vector2(i, j);
+                        if (!cirCoords.Contains(cVec))
+                        {
+                            cirCoords.Add(cVec);
+                        }
+                    }
+
                 }
             }
             xCircles.Clear();
             yCircles.Clear();
-
-
+            List<Vector2> a = new List<Vector2>();
+            a = cirCoords.Distinct().ToList();
+            cirCoords.Clear();
+            cirCoords = a;
             //Thread c = new Thread(() => remWithCircs(topCircle));
             //a.Start(); 
             List<Thread> tVecs = new List<Thread>();
@@ -250,18 +265,26 @@ namespace TestDxfDocument
             {
                 lvecs.Add(vecs);
             }
-            for(int i = 0; i < lvecs.Count(); i++)
+            int k = 0;
+            while (k < lvecs.Count()-1)
             {
-                tVecs.Add(new Thread(() => remWithVecs(lvecs[i])));
-                tVecs[i].Start();
+                if (k == lvecs.Count)
+                {
+                    k =- 1;
+                }
+                tVecs.Add(new Thread(() => remWithVecs(lvecs[k])));
+                tVecs[k].Start();
+                k++;
 
             }
+
+
             for(int i = 0; i < tVecs.Count(); i++)
             {
                 tVecs[i].Join();
             }
             tVecs.Clear();
-            List<List<Circle>> listCircs = Split(tbCircs, 8);
+            List<List<Circle>> listCircs = Split(tbCircs, 4);
             for (int i = 0; i < listCircs.Count()-1; i++)
             {
                 tVecs.Add(new Thread(() => remWithCircs(listCircs[i])));
@@ -329,8 +352,6 @@ namespace TestDxfDocument
 
                     }
                 }
-
-
             }
             doc.Save(outName + ".dxf");
             box_debug.Text += "Done creating DXF!";
@@ -363,19 +384,39 @@ namespace TestDxfDocument
             //}
 
         }
+        public void addCircs(List<double> a, List<double> b)
+        {
+            for(int i = 0; i < a.Count(); i++)
+            {
+                for(int j = 0; j < b.Count(); j++)
+                {
+                    Vector2 x = new Vector2(i, j);
+                    if(!cirCoords.Contains(x))
+                    {
+                        cirCoords.Add(x);
+                    }
+                }
+            }
+        }
         public void remWithCircs(List<Circle> circs)
         {
             foreach(List<Circle> list in Split(circs, 9))
             {
                 foreach(Circle j in list)
                 {
-                    for (int i = 0; i < cirCoords.Count(); i++)
+                    int jml = cirCoords.Count();
+                    int i = 0;
+                    while (i < cirCoords.Count())
                     {
+                        if (i > cirCoords.Count())
+                        {
+                            i = cirCoords.Count()-15;
+                        }
                         if (checkCircle(new Vector2(j.Center.X, j.Center.Y), cirCoords[i], j.Radius, cSize))
                         {
                             cirCoords.Remove(cirCoords[i]);
                         }
-
+                        i++;
                     }
                 }
             }
@@ -386,13 +427,20 @@ namespace TestDxfDocument
             {
                 foreach (Vector2 tops in list)
                 {
-                    for (int u = 0; u < cirCoords.Count(); u++)
+                    int jml = cirCoords.Count();
+                    int u = 0;
+                    while (u < cirCoords.Count())
                     {
+                        if (u >cirCoords.Count())
+                        {
+                            u = cirCoords.Count() - 15;
+                        }
                         double TDistance = Vector2.Distance(tops, cirCoords[u]);
                         if (TDistance <= cTopBotGap + cSize)
                         {
                             cirCoords.Remove(cirCoords[u]);
                         }
+                        u++;
                     }
                 }
             }
